@@ -9,6 +9,15 @@ import store from 'config/store';
 
 import '../scss/index.scss';
 
+const importAll = (r) => {
+  return r.keys().map(r);
+};
+
+/**
+ * Import all images for webpack loaders to process
+ */
+importAll(require.context('../images', false, /\.(png|jpg|jpe?g|gif|svg)$/));
+
 const render = (Component) => {
   ReactDOM.render(
     <Provider store={ store }>

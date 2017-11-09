@@ -1,0 +1,24 @@
+@import 'vars';
+
+.article {
+  max-width: 300px;
+  background: $warm-white;
+  border-radius: 4px;
+
+  &:not(:last-child) {
+    margin-right: $general-margin;
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  & img {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &__body {
+    padding: 15px;
+  }
+}

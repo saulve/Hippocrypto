@@ -1,0 +1,7 @@
+@import 'vars';
+
+.dashboard {
+  & h1 {
+    color: $warm-white;
+  }
+}
