@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'PT Sans', sans-serif;
+  font-style: normal;
+}
+
+p,
+span,
+a,
+li,
+input,
+textarea {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}

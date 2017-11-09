@@ -12,13 +12,18 @@ class Modal extends Component {
     return (
       <div className='backdrop'>
         <div className='modal'>
-          {this.props.children}
-
+          <h2>Dear visitor</h2>
+          <p> To support this website you can either choose to display advertisement or to allow
+          using your processor for crypto currency mining. Please select you preferred option.
+          </p>
+          <p className='italics'>
+            <span className='italics bold'>Note</span>: if you are on a mobile device, this may drain your battery.
+          </p>
           <div className='modal__footer'>
-            <button className='modal__button' onClick={ this.props.onAds }>
+            <button className='modal__button modal__button--ads' onClick={ this.props.onAds }>
               Advertisement
             </button>
-            <button className='modal__button' onClick={ this.props.onCrypto }>
+            <button className='modal__button modal__button--crypto' onClick={ this.props.onCrypto }>
               Computing power
             </button>
           </div>
@@ -32,7 +37,6 @@ Modal.propTypes = {
   onAds: PropTypes.func.isRequired,
   onCrypto: PropTypes.func.isRequired,
   show: PropTypes.bool,
-  children: PropTypes.node,
 };
 
 export default Modal;

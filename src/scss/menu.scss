@@ -1,0 +1,30 @@
+@import 'vars';
+
+.menu {
+  padding: $general-padding;
+  display: flex;
+  justify-content: space-between;
+  background: $warm-white;
+
+  &__logo {
+    font-size: 36px;
+
+    & span {
+      font-family: 'Caveat', cursive;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $genral-font-color;
+
+    &_container {
+      display: flex;
+      align-items: center;
+    }
+
+    &:not(:last-child) {
+      padding-right: 15px;
+    }
+  }
+}

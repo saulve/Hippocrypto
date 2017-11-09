@@ -1,0 +1,33 @@
+.miner {
+  & ul {
+    list-style: none;
+    padding: 0;
+    background: $warm-white;
+    border-radius: 4px;
+
+    & li {
+      padding-top: 15px;
+
+      &:last-child {
+        padding-bottom: 15px;
+      }
+    }
+
+    & a {
+      text-decoration: none;
+    }
+  }
+
+  &__result {
+    text-align: center;
+    font-size: 26px;
+  }
+
+  &__result-suffix {
+    font-size: 12px;
+  }
+
+  &__metric {
+    text-align: center;
+  }
+}

@@ -1,5 +1,21 @@
+@import 'vendor/avalanche';
+@import 'vendor/normalize';
+@import 'vars';
+@import 'fonts';
+@import 'menu';
+@import 'ads';
+@import 'miner';
+
+$ad-mode-color: #5596e6;
+$crypto-mode-color: #006d5d;
+
 body {
   background: #ccc;
+}
+
+.page {
+  padding: $general-padding;
+  position: relative;
 }
 
 .backdrop {
@@ -13,17 +29,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .modal {
   background-color: #fff;
   border-radius: 5px;
   min-width: 300px;
+  max-width: 400px;
   min-height: 300px;
   margin: 0 auto;
   padding: 30px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 
   &__button {
     cursor: pointer;
@@ -36,12 +54,84 @@ body {
     &:hover {
       background: #ccc;
     }
+
+    &--ads {
+      border: 2px solid $ad-mode-color;
+    }
+
+    &--crypto {
+      border: 2px solid $crypto-mode-color;
+    }
   }
 
   &__footer {
-    align-self: flex-end;
-    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-top: $general-margin-top;
+
+    & button:not(:last-child) {
+      margin-right: 5px;
+    }
   }
 }
+
+.app {
+  height: 100vh;
+
+  &__initial {
+    background: #fff;
+  }
+
+  &__crypto_bg {
+    background: linear-gradient(180deg, #008571, #006d5d, #005448, #003c32);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 21s ease infinite;
+    -moz-animation: AnimationName 21s ease infinite;
+    animation: AnimationName 21s ease infinite;
+
+    @-webkit-keyframes AnimationName {
+      0% { background-position: 53% 0%; }
+      50% { background-position: 48 % 100%; }
+      100% { background-position: 53% 0%; }
+    }
+
+    @-moz-keyframes AnimationName {
+      0% { background-position: 53% 0%; }
+      50% { background-position: 48% 100%; }
+      100% { background-position: 53% 0%; }
+    }
+
+    @keyframes AnimationName {
+      0% { background-position: 53% 0%; }
+      50% { background-position: 48% 100%; }
+      100% { background-position: 53% 0%; }
+    }
+  }
+
+  &__ads_bg {
+    background: linear-gradient(180deg, #5aaafa, #5596e6, #4178be, #325c80);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 21s ease infinite;
+    -moz-animation: AnimationName 21s ease infinite;
+    animation: AnimationName 21s ease infinite;
+
+    @-webkit-keyframes AnimationName {
+      0% { background-position: 53% 0%; }
+      50% { background-position: 48% 100%; }
+      100% { background-position: 53% 0%; }
+    }
+
+    @-moz-keyframes AnimationName {
+      0% { background-position: 53% 0%; }
+      50% { background-position: 48% 100%; }
+      100% { background-position: 53% 0%; }
+    }
+
+    @keyframes AnimationName {
+      0% { background-position: 53% 0%; }
+      50% { background-position: 48% 100%; }
+      100% { background-position: 53% 0%; }
+    }
+  }
+}
+

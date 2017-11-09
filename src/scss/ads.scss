@@ -1,0 +1,17 @@
+.advert {
+  background: #ccc;
+
+  &__top {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__side {
+    height: 100%;
+    position: absolute;
+    padding: 0;
+    text-align: center;
+  }
+}

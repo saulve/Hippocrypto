@@ -6,7 +6,10 @@ export default class Menu extends Component {
   render() {
     return (
       <div className='menu'>
-        <div className='menu__link'>
+        <div className='menu__logo'>
+          <span> HIPPOCRYPTO </span>
+        </div>
+        <div className='menu__link_container'>
           <NavLink
             activeClassName='menu__link--active'
             className='menu__link'
