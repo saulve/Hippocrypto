@@ -16,7 +16,7 @@ const importAll = (r) => {
 /**
  * Import all images for webpack loaders to process
  */
-importAll(require.context('../images', false, /\.(png|jpg|jpe?g|gif|svg)$/));
+importAll(require.context('../img', false, /\.(png|jpg|jpe?g|gif|svg)$/));
 
 const render = (Component) => {
   ReactDOM.render(
