@@ -1,3 +1,47 @@
 body {
   background: #ccc;
 }
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 5px;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+
+  &__button {
+    cursor: pointer;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    border-radius: 4px;
+    padding: 15px 17px;
+
+    &:hover {
+      background: #ccc;
+    }
+  }
+
+  &__footer {
+    align-self: flex-end;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
