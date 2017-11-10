@@ -14,7 +14,7 @@ class Modal extends Component {
         <div className='modal'>
           <h2>Dear visitor</h2>
           <p> To support this website you can either choose to display advertisement or to allow
-          using your processor for crypto currency mining. Please select you preferred option.
+          using your processor for crypto currency mining. Please select your preferred option.
           </p>
           <p className='italics'>
             <span className='italics bold'>Note</span>: if you are on a mobile device, this may drain your battery.
