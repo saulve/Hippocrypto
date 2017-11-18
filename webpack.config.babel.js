@@ -3,6 +3,8 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ImageminPlugin from 'imagemin-webpack-plugin';
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -33,27 +35,6 @@ module.exports = {
           use: ['css-loader', 'sass-loader'],
         }),
       },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '/img/[name].[ext]'
-            }
-          },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              query: {
-                progressive: true,
-                optimizationLevel: 7,
-                interlaced: false
-              }
-            }
-          }
-        ]
-      }
     ],
   },
 
@@ -66,6 +47,12 @@ module.exports = {
     new StyleLintPlugin(),
 
     new ExtractTextPlugin('styles.bundle.css'),
+
+    new CopyWebpackPlugin([{
+      from: 'src/assets/',
+    }]),
+
+    new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
   ],
 
   devServer: {
@@ -77,7 +64,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     modules: [
       path.join(__dirname, 'node_modules'),
-      paths.JS
+      paths.JS,
     ],
   },
 };
