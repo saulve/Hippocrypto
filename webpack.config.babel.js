@@ -1,10 +1,12 @@
 import path from 'path';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ImageminPlugin from 'imagemin-webpack-plugin';
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -44,9 +46,16 @@ module.exports = {
       hash: true,
     }),
 
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async',
+    }),
+
     new StyleLintPlugin(),
 
     new ExtractTextPlugin('styles.bundle.css'),
+
+    // Minify css
+    new OptimizeCssAssetsPlugin(),
 
     new CopyWebpackPlugin([{
       from: 'src/assets/',
