@@ -7,6 +7,7 @@ import StyleLintPlugin from 'stylelint-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import StyleExtHtmlWebpackPlugin from 'style-ext-html-webpack-plugin';
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -49,6 +50,8 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
     }),
+
+    new StyleExtHtmlWebpackPlugin(),
 
     new StyleLintPlugin(),
 
