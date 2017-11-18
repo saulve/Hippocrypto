@@ -24,20 +24,29 @@ module.exports = {
   },
 
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-        ],
-      }, {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-        }),
+    rules: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [
+        'babel-loader',
+      ],
+    }, {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader'],
+      }),
+    }, {
+      test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'assets/fonts/[name].[ext]',
+        },
       },
+      ],
+    },
+
     ],
   },
 
@@ -61,10 +70,13 @@ module.exports = {
     new OptimizeCssAssetsPlugin(),
 
     new CopyWebpackPlugin([{
-      from: 'src/assets/',
+      from: 'src/assets/img',
+      to: 'assets/img',
     }]),
 
-    new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+    }),
   ],
 
   devServer: {

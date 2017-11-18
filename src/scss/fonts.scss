@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Caveat');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+/* stylelint-disable */
+@include font-face('PT Sans', '../assets/fonts/PT_Sans', null, null, 'ttf');
+@include font-face('Caveat', '../assets/fonts/Caveat', null, null, 'ttf');
+/* stylelint-enable */
 
 h1,
 h2,
@@ -29,3 +31,4 @@ textarea {
 .bold {
   font-weight: bold;
 }
+
