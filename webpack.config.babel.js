@@ -8,6 +8,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import StyleExtHtmlWebpackPlugin from 'style-ext-html-webpack-plugin';
+import BrotliPlugin from 'brotli-webpack-plugin';
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -29,8 +30,6 @@ const envPlugins = [
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: 'async',
   }),
-
-  new StyleExtHtmlWebpackPlugin(),
 
   new StyleLintPlugin(),
 ];
@@ -60,6 +59,9 @@ if (isProd) {
       },
     }),
 
+    // Attach CSS as Style to Head
+    new StyleExtHtmlWebpackPlugin(),
+
     // Minify css
     new OptimizeCssAssetsPlugin(),
 
@@ -70,12 +72,19 @@ if (isProd) {
 
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
+    }),
+
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     })
   );
 }
 
 module.exports = {
-  devtool: isProd? 'source-map' : 'inline-source-map',
+  devtool: isProd ? 'source-map' : 'inline-source-map',
   entry: path.join(paths.JS, 'index.js'),
   output: {
     path: paths.DIST,
@@ -93,7 +102,7 @@ module.exports = {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'sass-loader'],
+        use: ['css-loader', 'postcss-loader', 'sass-loader'],
       }),
     }, {
       test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
