@@ -1,5 +1,5 @@
 import path from 'path';
-
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -15,8 +15,64 @@ const paths = {
   JS: path.resolve(__dirname, 'src/js'),
 };
 
+const ENV = process.env.npm_lifecycle_event;
+const isProd = ENV === 'build';
+
+const envPlugins = [
+  new ExtractTextPlugin('styles.bundle.css'),
+
+  new HtmlWebpackPlugin({
+    template: path.join(paths.SRC, 'index.html'),
+    hash: true,
+  }),
+
+  new ScriptExtHtmlWebpackPlugin({
+    defaultAttribute: 'async',
+  }),
+
+  new StyleExtHtmlWebpackPlugin(),
+
+  new StyleLintPlugin(),
+];
+
+if (isProd) {
+  envPlugins.push(
+    // Uglify js
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        comparisons: true,
+        conditionals: true,
+        dead_code: true,
+        drop_debugger: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
+        screw_ie8: true,
+        sequences: true,
+        unused: true,
+        warnings: false,
+      },
+      output: {
+        comments: false,
+      },
+    }),
+
+    // Minify css
+    new OptimizeCssAssetsPlugin(),
+
+    new CopyWebpackPlugin([{
+      from: 'src/assets/img',
+      to: 'assets/img',
+    }]),
+
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+    })
+  );
+}
+
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: isProd? 'source-map' : 'inline-source-map',
   entry: path.join(paths.JS, 'index.js'),
   output: {
     path: paths.DIST,
@@ -50,34 +106,7 @@ module.exports = {
     ],
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html'),
-      hash: true,
-    }),
-
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'async',
-    }),
-
-    new StyleExtHtmlWebpackPlugin(),
-
-    new StyleLintPlugin(),
-
-    new ExtractTextPlugin('styles.bundle.css'),
-
-    // Minify css
-    new OptimizeCssAssetsPlugin(),
-
-    new CopyWebpackPlugin([{
-      from: 'src/assets/img',
-      to: 'assets/img',
-    }]),
-
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-    }),
-  ],
+  plugins: envPlugins,
 
   devServer: {
     contentBase: paths.SRC,
