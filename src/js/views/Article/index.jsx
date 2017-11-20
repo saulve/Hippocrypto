@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 
 class Article extends Component {
   render() {
-    const { img, name, description } = this.props;
+    const {
+      imgSrc, imgSrcSet, name, description,
+    } = this.props;
 
     return (
       <div className='article'>
-        <img src={ img } alt={ name } />
+        <img
+          src={ imgSrc }
+          srcSet={ imgSrcSet }
+          alt={ 'Thumbnail of article: ' + '\'' + name + '\'' }
+        />
         <div className='article__body'>
           <h2>{ name }</h2>
           <p>{ description }</p>
@@ -18,8 +24,9 @@ class Article extends Component {
 }
 
 Article.propTypes = {
-  img: PropTypes.string,
+  imgSrc: PropTypes.string,
   name: PropTypes.string,
+  imgSrcSet: PropTypes.string,
   description: PropTypes.string,
 };
 

@@ -36,6 +36,7 @@ rules:
   new-cap: 0
   no-plusplus: 0
   no-return-assign: 0
+  no-useless-concat: 0
   quote-props: 0
   template-curly-spacing: [2, "always"]
   # import rules
