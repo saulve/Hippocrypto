@@ -5,6 +5,7 @@
   "author": "Saul Venskutonis",
   "dependencies": {
     "gatsby": "~1.9.45",
+    "gatsby-image": "^1.0.35",
     "gatsby-link": "~1.6.17",
     "gatsby-plugin-catch-links": "~1.0.1",
     "gatsby-plugin-react-helmet": "~1.0.1",
@@ -15,6 +16,7 @@
     "gatsby-remark-images": "~1.5.13",
     "gatsby-source-filesystem": "~1.5.1",
     "gatsby-transformer-remark": "~1.7.12",
+    "gatsby-transformer-sharp": "^1.6.18",
     "react": "~16.2.0",
     "react-dom": "~16.2.0",
     "react-icons": "~2.2.5",

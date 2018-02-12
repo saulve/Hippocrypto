@@ -1,29 +1,34 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
+import Img from 'gatsby-image'
 import Helmet from 'react-helmet';
 
 import Link from '../components/Link';
+import Tags from '../components/Tags';
 
 import '../css/index.css';
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark;
   return (
-    <div className="blog-posts">
+    <div className="article__container">
       {posts
         .filter(post => post.node.frontmatter.title.length > 0)
         .map(({ node: post }) => {
           return (
-            <div className="blog-post-preview" key={post.id}>
-              <h1 className="title">
-                <GatsbyLink to={post.frontmatter.path}>
-                  {post.frontmatter.title}
-                </GatsbyLink>
-              </h1>
-              <h2 className="date">{post.frontmatter.date}</h2>
-              <p>{post.excerpt}</p>
-              <Link to={post.frontmatter.path}>Read more</Link>
-            </div>
+            <GatsbyLink className="article" key={post.id} to={post.frontmatter.path}>
+              <div className='article__thumb'>
+              <Img sizes={post.frontmatter.feature.childImageSharp.sizes}/>
+              </div>
+                <div className='article__body'>
+                  <h2>{ post.frontmatter.title }</h2>
+                  <h2 className="date">{ post.frontmatter.date }</h2>
+                  <p>{post.excerpt}</p>
+                </div>
+                <div className='article__footer'>
+                  <Tags list={post.frontmatter.tags || []} />
+                </div>
+            </GatsbyLink>
           );
         })}
     </div>
@@ -41,6 +46,18 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             path
+            tags
+            feature {
+              childImageSharp{
+                sizes(
+                maxWidth: 430
+                quality: 80
+                traceSVG: { background: "#f2f8f3", color: "#d6ebd9" }
+                ) {
+                  ...GatsbyImageSharpSizes_tracedSVG
+                }
+              }
+            }
           }
         }
       }

@@ -9,6 +9,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-next',
     'gatsby-plugin-catch-links',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -16,21 +17,8 @@ module.exports = {
         name: 'pages',
       },
     },
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              linkImagesToOriginal: false
-            }
-          }
-        ]
-      }
-    },
+    'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-sass'
   ],
 }

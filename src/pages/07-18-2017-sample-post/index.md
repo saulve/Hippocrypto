@@ -2,6 +2,7 @@
 path: "/sample-post"
 date: "2017-07-18T13:35:13.234Z"
 title: "Sample Post"
+feature: "./paul-morris-167780.jpg"
 tags: ["latin", "sample"]
 ---
 
