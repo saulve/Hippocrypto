@@ -1,0 +1,35 @@
+/* stylelint-disable */
+// @include font-face('PT Sans', '../assets/fonts/PT_Sans', null, null, 'ttf');
+@import url('https://fonts.googleapis.com/css?family=Caveat|PT+Sans');
+// @include font-face('Caveat', '../assets/fonts/Caveat', null, null, 'ttf');
+/* stylelint-enable */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'PT Sans', sans-serif;
+  font-style: normal;
+}
+
+p,
+span,
+a,
+li,
+input,
+textarea {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
