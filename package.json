@@ -5,6 +5,7 @@
   "author": "Saul Venskutonis",
   "dependencies": {
     "gatsby": "~1.9.45",
+    "gatsby-cli": "^1.1.40",
     "gatsby-image": "^1.0.35",
     "gatsby-link": "~1.6.17",
     "gatsby-plugin-catch-links": "~1.0.1",
