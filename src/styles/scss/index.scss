@@ -16,7 +16,7 @@ body {
   background: #ccc;
 }
 
-.page {
+.container {
   padding: $general-padding;
 }
 
@@ -78,8 +78,6 @@ body {
 }
 
 .app {
-  height: 100vw;
-
   &__initial {
     background: #fff;
   }

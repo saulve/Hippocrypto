@@ -5,6 +5,8 @@ import Helmet from 'react-helmet';
 import CryptoMiner from '../api/coinhive';
 import Modal from '../templates/Modal';
 import MiningStatus from '../templates/MiningStatus';
+import Advertisement from '../templates/Advertisement';
+import User from '../api/user';
 
 import '../css/typography.css';
 import '../styles/scss/index.scss';
@@ -22,6 +24,7 @@ export default class Template extends React.Component {
       hideAds: null,
       background: 'app__initial',
     };
+    this.user = new User();
     this.handleAdSelection = this.handleAdSelection.bind(this);
     this.handleCryptoSelection = this.handleCryptoSelection.bind(this);
   }
@@ -65,8 +68,7 @@ export default class Template extends React.Component {
         />
         <div
           style={{
-            background: `rebeccapurple`,
-            marginBottom: `1.45rem`,
+            background: `rebeccapurple`
           }}
         >
           <div
@@ -89,18 +91,16 @@ export default class Template extends React.Component {
             </h1>
           </div>
         </div>
-        <div
-        className="grid__cell col-10/12 dashboard"
-          // style={{
-          //   margin: `0 auto`,
-          //   maxWidth: 960,
-          //   padding: `0px 1.0875rem 1.45rem`,
-          //   paddingTop: 0,
-          // }}
-        >
-          {this.props.children()}
+        <div className="container">
+          <div className="grid">
+            <Advertisement className='advert advert__top' hideAds={ this.state.hideAds } />
+            <div className="grid__cell col-10/12 dashboard">
+              {this.props.children()}
+            </div>
+            <MiningStatus minerData={ this.state.minerData } hideAds={ this.state.hideAds } />
+            <Advertisement className='grid__cell col-2/12 advert advert__side' hideAds={ this.state.hideAds } />
+          </div>
         </div>
-        <MiningStatus minerData={ this.state.minerData } hideAds={ this.state.hideAds } />
         <Modal
           show={ this.state.isOpen }
           onAds={ this.handleAdSelection }

@@ -9,10 +9,10 @@ export default function MiningStatus(props) {
     }
 
     return (
-      <div className='grid__cell col-2/12 miner'>
+      <div className='grid__cell col-1/12--wide col-2/12--portable miner'>
         <ul>
           <li className='miner__metric'>
-            <a href='https://bitcoin.org/en/vocabulary#hash-rate'>Hash rate</a>
+            <a href='https://bitcoin.org/en/vocabulary#hash-rate' target="_blank">Hash rate</a>
             <br />
             <span className='miner__result'> { Math.trunc(minerData.hashesPerSecond) }</span>
             <span className='miner__result-suffix'>h/s</span>
@@ -28,7 +28,7 @@ export default function MiningStatus(props) {
             <span className='miner__result'> { Math.trunc(minerData.acceptedHashes) } </span>
           </li>
           <li className='miner__metric'>
-            <a href='https://www.techopedia.com/definition/27857/thread-operating-systems'>Number of threads</a>
+            <a href='https://www.techopedia.com/definition/27857/thread-operating-systems' target="_blank">Number of threads</a>
             <br />
             <span className='miner__result'> { minerData.numThreads } </span>
           </li>

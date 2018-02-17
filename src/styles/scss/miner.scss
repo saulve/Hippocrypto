@@ -1,11 +1,13 @@
 .miner {
-  position: fixed;
+  position: sticky;
+  top: 1.45rem;
 
   & ul {
     list-style: none;
-    padding: 0;
+    padding: $small-padding;
     background: $warm-white;
     border-radius: 4px;
+    margin: 0px;
 
     & li {
       padding-top: 15px;
