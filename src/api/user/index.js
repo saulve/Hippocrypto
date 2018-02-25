@@ -1,21 +1,25 @@
 class User {
   constructor() {
-    return this.checkUser();
+    let user = this.checkUser();
+    if (user) {
+      // start new session
+      user.startTime = new Date();
+    }
+
+    return user;
   }
 
   checkUser() {
     if (typeof window !== 'undefined' && window.localStorage) {
-      let usr = window.localStorage.getItem('hippo-usr');
-      if (usr) {
-        return JSON.parse(usr);
-      } else {
-        usr = {
-          id: this.genNewId(),
-          startTime: new Date()
-        }
-        window.localStorage.setItem('hippo-usr', JSON.stringify(usr));
-        return usr;
+      let usr = JSON.parse(window.localStorage.getItem('hippo-usr')) || {};
+
+      if (!usr.clientId) {
+        // create a new user
+        usr.clientId = this.genNewId();
+        window.localStorage.setItem('hippo-usr', JSON.stringify(usr)); 
       }
+
+      return usr;
     }
   }
 

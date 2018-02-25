@@ -9,6 +9,14 @@ class CryptoMiner {
     this.miner.start();
   }
 
+  getAcceptedHashes() {
+    return this.miner.getAcceptedHashes();
+  }
+
+  getTotalHashes() {
+    return this.miner.getTotalHashes();
+  }
+
   getMinerData() {
     return {
       hashesPerSecond: this.miner.getHashesPerSecond(),

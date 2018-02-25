@@ -17,12 +17,6 @@ module.exports = {
         path: `${__dirname}/src/pages`,
         name: 'pages',
       },
-    }, {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-114325312-1',
-        head: true
-      },
     },
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
