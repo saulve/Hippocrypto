@@ -68,7 +68,7 @@ body {
 
   &__footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: $general-margin-top;
 
     & button:not(:last-child) {

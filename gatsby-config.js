@@ -6,7 +6,7 @@ module.exports = {
   pathPrefix: process.env.CI ? `/${name}` : `/`,
   siteMetadata: {
     author: 'You!',
-    title: `Gatsby Default (Blog) Starter`,
+    title: `Gatsby Default (Blog) Starter`
   },
   plugins: [
     'gatsby-plugin-react-next',
@@ -15,11 +15,17 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
+        name: 'pages'
+      }
+    }, {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-114325312-1',
+        head: true
+      }
     },
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass'
-  ],
-}
+  ]
+};

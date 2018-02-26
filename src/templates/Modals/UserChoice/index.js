@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default function Modal(props) {
-    // Render nothing if the "show" prop is false
-    if (!props.show) {
-      return null;
-    }
-
+export default function UserChoice(props) {
     return (
       <div className='backdrop'>
         <div className='modal'>
@@ -30,9 +25,8 @@ export default function Modal(props) {
     );
 }
 
-Modal.propTypes = {
+UserChoice.propTypes = {
   onAds: PropTypes.func.isRequired,
   onCrypto: PropTypes.func.isRequired,
-  show: PropTypes.bool,
 };
 

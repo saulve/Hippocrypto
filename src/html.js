@@ -39,6 +39,9 @@ export default class HTML extends React.Component {
           />
           {this.props.postBodyComponents}
           <script src="https://authedmine.com/lib/authedmine.min.js" async></script>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script dangerouslySetInnerHTML={{__html: '(window.adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-3251605972716375", enable_page_level_ads: true});'}}>
+          </script>
         </body>
       </html>
     );

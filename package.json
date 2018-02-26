@@ -20,6 +20,7 @@
     "gatsby-transformer-remark": "~1.7.12",
     "gatsby-transformer-sharp": "^1.6.18",
     "jquery": "^3.3.1",
+    "just-detect-adblock": "^1.0.0",
     "react": "~16.2.0",
     "react-device-detect": "^0.1.0",
     "react-dom": "~16.2.0",

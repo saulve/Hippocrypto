@@ -91,3 +91,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     return posts;
   })
 };
+
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  if (stage === 'build-html') {
+    config.loader('null', {
+      test: /just-detect-adblock/,
+      loader: "null-loader",
+    });
+  }
+};
