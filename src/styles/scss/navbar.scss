@@ -1,0 +1,32 @@
+.navbar {
+	background: $warm-white;
+	position: fixed;
+    width: 100%;
+    z-index: 1;
+
+	&__logo {
+		max-width: 50px;
+		max-height: 50px;
+		@media only screen and (max-width: 500px) {
+			max-width: 50%;
+		}
+	}
+	& a {
+		display: inline-block;
+		@media only screen and (max-width: 500px) {
+			text-align: center;
+		}
+
+		& h1 {
+			padding: $reduced-padding $general-padding $reduced-padding $general-padding;
+			margin: 0px;
+			color: $general-font-color;
+
+			& img {
+				margin-bottom: 0px;
+				margin-right: $general-padding;
+				vertical-align: middle;
+			}
+		}
+	}
+}
