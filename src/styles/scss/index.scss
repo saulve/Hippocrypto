@@ -14,11 +14,13 @@ $ad-mode-color: #5596e6;
 $crypto-mode-color: #006d5d;
 
 body {
-  background: #ccc;
+  background: $warm-white;
 }
 
 .container {
   padding: $general-padding;
+  position: relative;
+  top: 80px;
 }
 
 .backdrop {

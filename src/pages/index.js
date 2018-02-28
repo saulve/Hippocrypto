@@ -21,12 +21,13 @@ export default function Index({ data }) {
               <Img sizes={post.frontmatter.feature.childImageSharp.sizes}/>
               </div>
                 <div className='article__body'>
-                  <h2>{ post.frontmatter.title }</h2>
-                  <h2 className="date">{ post.frontmatter.date }</h2>
+                  <h2 className='article__title'>{ post.frontmatter.title }<br/>
+                  <span className='article__date'>{ post.frontmatter.date }</span>
+                  </h2>
                   <p>{post.excerpt}</p>
-                </div>
-                <div className='article__footer'>
+                  <div className='article__footer'>
                   <Tags list={post.frontmatter.tags || []} />
+                </div>
                 </div>
             </GatsbyLink>
           );
@@ -40,7 +41,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
+          excerpt(pruneLength: 150)
           id
           frontmatter {
             title

@@ -1,6 +1,8 @@
 .navbar {
 	background: $warm-white;
 	position: fixed;
+	max-height: 80px;
+	top: 0px;
     width: 100%;
     z-index: 1;
 
@@ -19,6 +21,7 @@
 
 		& h1 {
 			padding: $reduced-padding $general-padding $reduced-padding $general-padding;
+			border: none;
 			margin: 0px;
 			color: $general-font-color;
 

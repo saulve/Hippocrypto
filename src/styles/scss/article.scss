@@ -4,6 +4,18 @@
   max-width: 300px;
   background: $warm-white;
   border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-5px);
+    //   &:hover {
+      
+    //   transition: transform 0.3s ease-in;
+    // }
+  }
 
   &:not(:last-child) {
     margin-right: $general-margin;
@@ -20,5 +32,44 @@
 
   &__body {
     padding: 15px;
+    & h2 {
+      text-align: center;
+    }
+  }
+
+  &__date {
+    font-size: 0.75rem;
+  }
+
+  &__footer {
+    & .tag-list {
+      list-style: none;
+      margin: 0px;
+
+      & li {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        background: $hippo-blue;
+        border: 1px solid $hippo-blue;
+        border-radius: 3px;
+
+        & a {
+          color: $warm-white;
+        }
+
+        &:hover {
+          background: $warm-white;
+          transition: background 0.1s ease-in;
+          & a {
+            text-decoration: none;
+            color: $general-font-color;
+          }
+        }
+
+        &:not(:first-child) {
+          margin-left: 0.5rem;
+        }
+      }
+    }
   }
 }

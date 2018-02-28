@@ -25,7 +25,7 @@ export default class Template extends React.Component {
     super(props);
 
     this.state = {
-      isOpen: true,
+      isOpen: false, // set to false for now
       hideAds: null,
       background: 'app__initial'
     };
