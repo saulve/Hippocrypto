@@ -1,6 +1,6 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
-import Img from 'gatsby-image'
+import Img from 'gatsby-image';
 import Helmet from 'react-helmet';
 
 import Link from '../components/Link';
@@ -14,19 +14,25 @@ export default function Index({ data }) {
         .filter(post => post.node.frontmatter.title.length > 0)
         .map(({ node: post }) => {
           return (
-            <GatsbyLink className="article" key={post.id} to={post.frontmatter.path}>
-              <div className='article__thumb'>
-              <Img sizes={post.frontmatter.feature.childImageSharp.sizes}/>
+            <GatsbyLink
+              className="article"
+              key={post.id}
+              to={post.frontmatter.path}
+            >
+              <div className="article__thumb">
+                <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
               </div>
-                <div className='article__body'>
-                  <h2 className='article__title'>{ post.frontmatter.title }<br/>
-                  <span className='article__date'>{ post.frontmatter.date }</span>
-                  </h2>
-                  <p>{post.excerpt}</p>
-                  <div className='article__footer'>
-                  <Tags list={post.frontmatter.tags || []} />
-                </div>
-                </div>
+              <div className="article__body">
+                <h2 className="article__title">
+                  {post.frontmatter.title}
+                  <br />
+                  <span className="article__date">{post.frontmatter.date}</span>
+                </h2>
+                <p>{post.excerpt}</p>
+              </div>
+              <div className="article__footer">
+                <Tags list={post.frontmatter.tags || []} />
+              </div>
             </GatsbyLink>
           );
         })}
@@ -47,11 +53,11 @@ export const pageQuery = graphql`
             path
             tags
             feature {
-              childImageSharp{
+              childImageSharp {
                 sizes(
-                maxWidth: 430
-                quality: 80
-                traceSVG: { background: "#f2f8f3", color: "#325C80" }
+                  maxWidth: 430
+                  quality: 80
+                  traceSVG: { background: "#f2f8f3", color: "#325C80" }
                 ) {
                   ...GatsbyImageSharpSizes_tracedSVG
                 }

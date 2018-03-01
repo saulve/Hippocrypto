@@ -14,7 +14,7 @@ export default function Template({ data, pathContext }) {
     <div className="article expanded">
       <Helmet title={`Hippocrypto - ${post.frontmatter.title}`} />
       <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
-      <div className="article__body">
+      <div className="article__body expanded">
         <h1 className="article__title">
           {post.frontmatter.title}
           <br />
