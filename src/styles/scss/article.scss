@@ -2,19 +2,22 @@
 
 .article {
   max-width: 300px;
-  background: $warm-white;
+  background: #fff;
   border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: $general-shadow;
+  color: $general-font-color;
 
-  &:hover {
+  &.expanded {
+    max-width: 75%;
+    margin: 0 auto;
+  }
+
+  &:hover:not(.expanded) {
     text-decoration: none;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: $general-expanded-shadow;
     transition: all 0.3s ease-in-out;
     transform: translateY(-5px);
-    //   &:hover {
-      
-    //   transition: transform 0.3s ease-in;
-    // }
+    // transform: translate3d(0,-.125rem,0);
   }
 
   &:not(:last-child) {
@@ -32,44 +35,62 @@
 
   &__body {
     padding: 15px;
-    & h2 {
+    & .article__title {
       text-align: center;
     }
   }
 
   &__date {
     font-size: 0.75rem;
+    color: #555;
   }
 
-  &__footer {
-    & .tag-list {
-      list-style: none;
-      margin: 0px;
+  &__navigation {
+    padding-top: $general-padding;
+    overflow: auto;
+    overflow-x: hidden;
 
-      & li {
-        display: inline-block;
-        padding: 0.25rem 0.5rem;
-        background: $hippo-blue;
-        border: 1px solid $hippo-blue;
-        border-radius: 3px;
+    &--prev {
+      float: left;
+    }
 
-        & a {
-          color: $warm-white;
+    &--next {
+      float: right;
+    }
+
+    & a:hover {
+        text-decoration: none;
+        & .arrow__left {
+          // -webkit-animation: MoveLeftAndRight 1s linear infinite;
+          animation: MoveLeftAndRight 0.75s linear infinite;
         }
-
-        &:hover {
-          background: $warm-white;
-          transition: background 0.1s ease-in;
-          & a {
-            text-decoration: none;
-            color: $general-font-color;
-          }
-        }
-
-        &:not(:first-child) {
-          margin-left: 0.5rem;
+        & .arrow__right {
+          animation: MoveRightAndLeft 0.75s linear infinite;
         }
       }
-    }
+  }
+}
+
+@-webkit-keyframes MoveLeftAndRight {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-2.5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes MoveRightAndLeft {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(2.5px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }

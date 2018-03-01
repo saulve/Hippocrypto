@@ -13,7 +13,6 @@ import MiningStatus from '../templates/MiningStatus';
 import Advertisement from '../templates/Advertisement';
 import User from '../api/user';
 
-import '../css/typography.css';
 import '../styles/scss/index.scss';
 
 export default class Template extends React.Component {
@@ -106,7 +105,7 @@ export default class Template extends React.Component {
               className="advert advert__top"
               hideAds={this.state.hideAds}
             />{' '}
-            <div className="grid__cell col-10/12 dashboard">
+            <div className="grid__cell col-10/12">
               {' '}
               {this.props.children()}{' '}
             </div>{' '}

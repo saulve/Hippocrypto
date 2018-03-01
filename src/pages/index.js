@@ -6,8 +6,6 @@ import Helmet from 'react-helmet';
 import Link from '../components/Link';
 import Tags from '../components/Tags';
 
-import '../css/index.css';
-
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark;
   return (
@@ -53,7 +51,7 @@ export const pageQuery = graphql`
                 sizes(
                 maxWidth: 430
                 quality: 80
-                traceSVG: { background: "#f2f8f3", color: "#d6ebd9" }
+                traceSVG: { background: "#f2f8f3", color: "#325C80" }
                 ) {
                   ...GatsbyImageSharpSizes_tracedSVG
                 }
