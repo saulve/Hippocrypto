@@ -13,7 +13,10 @@ export default function Template({ data, pathContext }) {
   return (
     <div className="article expanded">
       <Helmet title={`Hippocrypto - ${post.frontmatter.title}`} />
-      <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
+      <div className="article__thumb expanded">
+        <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
+        <span className="credit"> {post.frontmatter.credit} </span>
+      </div>
       <div className="article__body expanded">
         <h1 className="article__title">
           {post.frontmatter.title}
@@ -24,13 +27,19 @@ export default function Template({ data, pathContext }) {
         <Tags list={post.frontmatter.tags || []} />
         <div className="article__navigation">
           {prev && (
-            <Link className='article__navigation--prev' to={prev.frontmatter.path}>
-              <BackIcon className='arrow__left' /> {prev.frontmatter.title}
+            <Link
+              className="article__navigation--prev"
+              to={prev.frontmatter.path}
+            >
+              <BackIcon className="arrow__left" /> {prev.frontmatter.title}
             </Link>
           )}
           {next && (
-            <Link className='article__navigation--next' to={next.frontmatter.path}>
-              {next.frontmatter.title} <ForwardIcon className='arrow__right' />
+            <Link
+              className="article__navigation--next"
+              to={next.frontmatter.path}
+            >
+              {next.frontmatter.title} <ForwardIcon className="arrow__right" />
             </Link>
           )}
         </div>
@@ -48,6 +57,7 @@ export const pageQuery = graphql`
         path
         tags
         title
+        credit
         feature {
           childImageSharp {
             sizes(
