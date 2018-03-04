@@ -9,10 +9,11 @@ import Tags from '../components/Tags';
 
 export default function Template({ data, pathContext }) {
   const { markdownRemark: post } = data;
+  const siteTitle = data.site.siteMetadata.title;
   const { next, prev } = pathContext;
   return (
     <div className="article expanded">
-      <Helmet title={`Hippocrypto - ${post.frontmatter.title}`} />
+      <Helmet title={ siteTitle + ' | ' + post.frontmatter.title} />
       <div className="article__thumb expanded">
         <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
         <span className="credit"> {post.frontmatter.credit} </span>
@@ -50,6 +51,11 @@ export default function Template({ data, pathContext }) {
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {

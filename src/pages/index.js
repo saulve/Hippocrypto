@@ -8,8 +8,10 @@ import Tags from '../components/Tags';
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark;
+  const siteTitle = data.site.siteMetadata.title;
   return (
     <div className="article__container">
+      <Helmet title={siteTitle} />
       {posts
         .filter(post => post.node.frontmatter.title.length > 0)
         .map(({ node: post }) => {
@@ -46,6 +48,11 @@ export default function Index({ data }) {
 
 export const pageQuery = graphql`
   query IndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
