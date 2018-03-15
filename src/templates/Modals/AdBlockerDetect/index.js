@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
+import { GENERAL, AD_BLOCKER } from '../../../constants/modal-strings.js';
 
 const reload = () => {
   location.reload();
-}
+};
 
 export default function AdBlockerDetect() {
-
-    return (
-      <div className='backdrop'>
-        <div className='modal'>
-          <h2>Dear visitor</h2>
-          <p> I've noticed that you're using <strong>AdBlocker</strong>, which is a great
-          program. However, to proceed with this experiment, I have to ask you to disable it
-          for pages on this domain. You can do that by clicking on the AdBlocker icon and selecting:
-          <br/><span className='italics'>"Don't run on pages on this domain"</span>.
-          </p>
-          <p>Sincerely thank you!</p>
-          <div className='modal__footer'>
-            <button className='modal__button' onClick={ reload }>
-              Click here once AdBlocker is disabled
-            </button>
-          </div>
-        </div>
+  return (
+    <div>
+      <h2>{GENERAL.HEADER}</h2>
+      <p dangerouslySetInnerHTML={{ __html: AD_BLOCKER.MESSAGE }} />
+      <p dangerouslySetInnerHTML={{ __html: AD_BLOCKER.SUB_MESSAGE }} />
+      <div className="modal__footer">
+        <button className="modal__button" onClick={reload}>
+          {AD_BLOCKER.BUTTON}
+        </button>
       </div>
-    );
+    </div>
+  );
 }

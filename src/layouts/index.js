@@ -24,7 +24,7 @@ export default class Template extends React.Component {
     super(props);
 
     this.state = {
-      isOpen: false, // set to false for now
+      isOpen: true, // set to false for now
       hideAds: null,
       background: 'app__initial'
     };
@@ -74,7 +74,7 @@ export default class Template extends React.Component {
       minerData: this.miner.getMinerData(),
       background: 'app__crypto_bg'
     });
-    this.miner.startMiner();
+    // this.miner.startMiner();
     setInterval(() => {
       this.setState({
         minerData: this.miner.getMinerData()
