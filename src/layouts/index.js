@@ -86,15 +86,15 @@ export default class Template extends React.Component {
     return (
       <div className="app">
         <Helmet
-          title="Gatsby Default (Blog) Starter"
+          title={`${this.props.data.site.siteMetadata.title} | Homepage`}
           meta={[
             {
               name: 'description',
-              content: 'Sample'
+              content: 'Experimental cryptocurrency news website'
             },
             {
               name: 'keywords',
-              content: 'sample, something'
+              content: 'cryptocurrency, ethereum, erc20, metamask, bitcoin'
             }
           ]}
         />{' '}

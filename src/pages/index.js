@@ -11,7 +11,6 @@ export default function Index({ data }) {
   const siteTitle = data.site.siteMetadata.title;
   return (
     <div className="article__container">
-      <Helmet title={siteTitle} />
       {posts
         .filter(post => post.node.frontmatter.title.length > 0)
         .map(({ node: post }) => {

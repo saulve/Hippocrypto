@@ -8,6 +8,7 @@
   color: $general-font-color;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease-in-out;
 
   &.expanded {
     max-width: 75%;
@@ -17,7 +18,6 @@
   &:hover:not(.expanded) {
     text-decoration: none;
     box-shadow: $general-expanded-shadow;
-    transition: all 0.3s ease-in-out;
     transform: translateY(-5px);
   }
 
