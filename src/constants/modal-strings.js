@@ -26,23 +26,23 @@ export const QUESTIONS = [
 	// 	rangeStart: 1,
 	// 	rangeFinish: 10
 	// },
-	// {
-	// 	name: 'What is your age?',
-	// 	type: 'radio',
-	// 	answers: ['Under 18', '18-24', '24-30', '30-36', '36 or above']
-	// },
-	// {
-	// 	name:
-	// 		'What is your view towards websites mining cryptocurrency in the web browser?',
-	// 	type: 'radio',
-	// 	answers: [
-	// 		'Strongly negative',
-	// 		'Negative',
-	// 		'Neutral',
-	// 		'Positive',
-	// 		'Strongly positive'
-	// 	]
-	// },
+	{
+		name: 'What is your age?',
+		type: 'radio',
+		answers: ['Under 18', '18-24', '24-30', '30-36', '36 or above']
+	},
+	{
+		name:
+			'What is your view towards websites mining cryptocurrency in the web browser?',
+		type: 'radio',
+		answers: [
+			'Strongly negative',
+			'Negative',
+			'Neutral',
+			'Positive',
+			'Strongly positive'
+		]
+	},
 	{
 		name: 'Did you select advertisement because:',
 		type: 'checkbox',

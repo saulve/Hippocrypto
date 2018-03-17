@@ -1,62 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CheckboxAnswer from '../Answers/CheckboxAnswer';
+import MultiChoiceInput from '../Answers/MultiChoiceInput';
 
 export default class Question extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			question: props.question.name,
-			answer: []
-		};
 		this.answerTemplate = null;
 		this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
-		this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
 	}
 
 	handleAnswerSelected(event) {
 		const answer = this.props.question.answers[event.currentTarget.value];
 
-		if (this.state.question.type == 'range') {
+		if (this.props.type == 'range') {
 		} else {
-			let _answer = this.state.answer.slice();
-			_answer.push(answer);
-			this.setState({
-				answer: _answer
-			});
-		}
-	}
-
-	handleQuestionAnswered() {
-		this.props.onQuestionAnswered(this.state);
-	}
-
-	componentWillMount() {
-		switch (this.props.type) {
-			case 'range':
-				this.answerTemplate = <RangeAnswer />;
-				break;
-			case 'radio':
-				this.answerTemplate = <RadioAnswer />;
-				break;
-			case 'checkbox':
-				this.answerTemplate = (
-					<CheckboxAnswer
-						answers={this.props.question.answers}
-						onAnswerSelected={this.handleAnswerSelected}
-					/>
-				);
-				break;
+			this.props.onAnswerSelected(answer);
 		}
 	}
 
 	render() {
+		switch (this.props.type) {
+			case 'range':
+				this.answerTemplate = <RangeInput />;
+				break;
+			case 'radio':
+			case 'checkbox':
+				this.answerTemplate = (
+					<MultiChoiceInput
+						answers={this.props.question.answers}
+						onAnswerSelected={this.handleAnswerSelected}
+						type={this.props.type}
+					/>
+				);
+				break;
+		}
+
 		return (
 			<div>
 				<h3>{this.props.question.name}</h3>
 				{this.answerTemplate}
-				<button className="modal__button" onClick={this.handleQuestionAnswered}>
+				<button className="modal__button" onClick={this.props.onQuestionAnswered}>
 					{' '}
 					{this.props.last ? 'Submit' : 'Next'}
 				</button>
@@ -67,7 +51,9 @@ export default class Question extends React.Component {
 
 Question.propTypes = {
 	question: PropTypes.object.isRequired,
+	answer: PropTypes.array.isRequired,
 	type: PropTypes.string.isRequired,
 	onQuestionAnswered: PropTypes.func.isRequired,
+	onAnswerSelected: PropTypes.func.isRequired,
 	last: PropTypes.bool.isRequired
 };

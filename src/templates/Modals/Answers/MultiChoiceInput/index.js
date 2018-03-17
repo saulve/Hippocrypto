@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function CheckboxAnswer(props) {
+export default function MultiChoiceInput(props) {
 
 	function renderAnswerOptions(val, index) {
 		return (
 			<li>
 				<input 
-					type="checkbox"
+					type={props.type}
 					name="checkboxGroup"
 					id={`answer${index}`}
 					value={index}
@@ -27,7 +27,8 @@ export default function CheckboxAnswer(props) {
 	);
 }
 
-CheckboxAnswer.propTypes = {
+MultiChoiceInput.propTypes = {
 	answers: PropTypes.array.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,
+	type: PropTypes.string.isRequired,
 };
