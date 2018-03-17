@@ -52,17 +52,20 @@ export const QUESTIONS = [
     name: 'Did you select cryptocurrency mining because:',
     type: 'checkbox',
     isAds: false,
+    showOther: true,
     answers: [
       "I don't like on-site advertisement",
       'I want to directly support the content creator',
       'I want to support cryptocurrency adoption',
-      'I want to try out something new'
+      'I want to try out something new',
+      'Other'
     ]
   },
   {
     name: 'Did you select advertisement because:',
     type: 'checkbox',
     isAds: true,
+    showOther: true,
     answers: [
       "I don't understand how cryptocurrency works",
       "I'm on a mobile device and don't want my battery to be drained",
@@ -70,7 +73,8 @@ export const QUESTIONS = [
       "I don't like browser based mining",
       "I don't like cryptocurrency",
       "I don't want my device's performance to be affected",
-      "I don't want my device's hardware to degrade"
+      "I don't want my device's hardware to degrade",
+      'Other'
     ]
   }
 ];

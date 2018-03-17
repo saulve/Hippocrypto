@@ -12,6 +12,10 @@ export default function Question(props) {
     props.onAnswerSelected(answer);
 	}
 
+  function handleOther(event) {
+    props.onOtherSelected()
+  }
+
 	switch (props.type) {
 		case 'range':
 			answerTemplate = (
@@ -30,6 +34,7 @@ export default function Question(props) {
 					currentAnswer={props.currentAnswer}
 					onAnswerSelected={handleAnswerSelected}
 					type={props.type}
+          isOther={props.showOther}
 				/>
 			);
 			break;
@@ -57,5 +62,6 @@ Question.propTypes = {
 	type: PropTypes.string.isRequired,
 	onQuestionAnswered: PropTypes.func.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,
-	last: PropTypes.bool.isRequired
+  last: PropTypes.bool.isRequired,
+	isOther: PropTypes.bool.isRequired,
 };
