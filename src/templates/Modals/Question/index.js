@@ -11,7 +11,7 @@ export default class Question extends React.Component {
 	}
 
 	handleAnswerSelected(event) {
-		const answer = this.props.question.answers[event.currentTarget.value];
+		const answer = event.currentTarget.value;
 
 		if (this.props.type == 'range') {
 		} else {
@@ -29,6 +29,7 @@ export default class Question extends React.Component {
 				this.answerTemplate = (
 					<MultiChoiceInput
 						answers={this.props.question.answers}
+						currentAnswer={this.props.currentAnswer}
 						onAnswerSelected={this.handleAnswerSelected}
 						type={this.props.type}
 					/>
@@ -40,7 +41,10 @@ export default class Question extends React.Component {
 			<div>
 				<h3>{this.props.question.name}</h3>
 				{this.answerTemplate}
-				<button className="modal__button" onClick={this.props.onQuestionAnswered}>
+				<button 
+					className="modal__button"
+					onClick={this.props.onQuestionAnswered}
+					disabled={this.props.currentAnswer.length <= 0}>
 					{' '}
 					{this.props.last ? 'Submit' : 'Next'}
 				</button>
@@ -51,7 +55,7 @@ export default class Question extends React.Component {
 
 Question.propTypes = {
 	question: PropTypes.object.isRequired,
-	answer: PropTypes.array.isRequired,
+	currentAnswer: PropTypes.array.isRequired,
 	type: PropTypes.string.isRequired,
 	onQuestionAnswered: PropTypes.func.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,

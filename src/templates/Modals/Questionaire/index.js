@@ -26,16 +26,20 @@ export default class Questionaire extends React.Component {
 	}
 
 	handleAnswerSelected(val) {
-		let _currentAnswer;
-		if (this.state.question.type == 'checkbox') {
-			_currentAnswer = this.state.currentAnswer.slice();
+		if (!this.state.currentAnswer.includes(val)) {
+			let _currentAnswer;
+			if (this.state.question.type == 'checkbox') {
+				// save answer state for multiple checkboxes
+				_currentAnswer = this.state.currentAnswer.slice();
+			} else {
+				// overwrite the state for radio and range inputs
+				_currentAnswer = [];
+			}
 			_currentAnswer.push(val);
-		} else {
-			_currentAnswer = val
+			this.setState({
+				currentAnswer: _currentAnswer
+			});
 		}
-		this.setState({
-			currentAnswer: _currentAnswer
-		});
 	}
 
 	handleQuestionAnswered() {
@@ -58,7 +62,7 @@ export default class Questionaire extends React.Component {
 		} else {
 			const counter = ++this.state.counter;
 			const questionNum = ++this.state.questionNum;
-			const last = (questionNum == QUESTIONS.length) ? true : false;
+			const last = questionNum == QUESTIONS.length ? true : false;
 
 			this.setState({
 				counter: counter,
@@ -73,7 +77,7 @@ export default class Questionaire extends React.Component {
 		return (
 			<Question
 				question={this.state.question}
-				answer={this.state.currentAnswer}
+				currentAnswer={this.state.currentAnswer}
 				type={this.state.question.type}
 				onQuestionAnswered={this.handleQuestionAnswered}
 				onAnswerSelected={this.handleAnswerSelected}
