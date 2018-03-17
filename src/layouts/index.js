@@ -26,11 +26,11 @@ export default class Template extends React.Component {
     this.state = {
       isOpen: true, // set to false for now
       hideAds: null,
-      background: 'app__initial'
     };
     this.user = new User();
     this.handleAdSelection = this.handleAdSelection.bind(this);
     this.handleCryptoSelection = this.handleCryptoSelection.bind(this);
+    this.onSurveyFinish = this.onSurveyFinish.bind(this);
   }
 
   componentDidMount() {
@@ -59,9 +59,7 @@ export default class Template extends React.Component {
   handleAdSelection() {
     this.user.selection = 'Advertisement';
     this.setState({
-      isOpen: !this.state.isOpen,
       hideAds: false,
-      background: 'app__ads_bg'
     });
   }
 
@@ -69,10 +67,8 @@ export default class Template extends React.Component {
     this.miner = new CryptoMiner();
     this.user.selection = 'Mining';
     this.setState({
-      isOpen: !this.state.isOpen,
       hideAds: true,
       minerData: this.miner.getMinerData(),
-      background: 'app__crypto_bg'
     });
     // this.miner.startMiner();
     setInterval(() => {
@@ -80,6 +76,14 @@ export default class Template extends React.Component {
         minerData: this.miner.getMinerData()
       });
     }, 2000);
+  }
+
+  onSurveyFinish(results) {
+    this.user.surveyResults = results;
+    // close modal
+    this.setState({
+      isOpen: false
+    });
   }
 
   render() {
@@ -124,6 +128,8 @@ export default class Template extends React.Component {
           onAds={this.handleAdSelection}
           onCrypto={this.handleCryptoSelection}
           onAdBlocker={this.state.isAdBlock}
+          onSurveyFinish={this.onSurveyFinish}
+          hideAds={this.state.hideAds}
         />{' '}
       </div>
     );
