@@ -4,89 +4,97 @@ import Question from '../Question';
 import { QUESTIONS } from '../../../constants/modal-strings.js';
 
 export default class Questionaire extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			counter: 0,
-			question: null,
-			questionNum: 1,
-			last: false,
-			currentAnswer: []
-		};
-		this.answers = [];
-		this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
-		this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
-	}
+    this.state = {
+      counter: 0,
+      question: QUESTIONS[0],
+      questionNum: 1,
+      last: false,
+      currentAnswer: []
+    };
+    this.answers = [];
+    this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
+    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+  }
 
-	componentWillMount() {
-		this.setState({
-			question: QUESTIONS[0]
-		});
-	}
+  handleAnswerSelected(val) {
+    let _currentAnswer;
+    const index = this.state.currentAnswer.indexOf(val);
+    if (index == -1) {
+      if (this.state.question.type == 'checkbox') {
+        // save answer state for multiple checkboxes
+        _currentAnswer = this.state.currentAnswer.slice();
+      } else {
+        // overwrite the state for radio and range inputs
+        _currentAnswer = [];
+      }
+      _currentAnswer.push(val);
+    } else {
+      _currentAnswer = this.state.currentAnswer.slice();
+      _currentAnswer.splice(index, 1); // remove item
+    }
 
-	handleAnswerSelected(val) {
-		if (!this.state.currentAnswer.includes(val)) {
-			let _currentAnswer;
-			if (this.state.question.type == 'checkbox') {
-				// save answer state for multiple checkboxes
-				_currentAnswer = this.state.currentAnswer.slice();
-			} else {
-				// overwrite the state for radio and range inputs
-				_currentAnswer = [];
-			}
-			_currentAnswer.push(val);
-			this.setState({
-				currentAnswer: _currentAnswer
-			});
-		}
-	}
+    this.setState({
+      currentAnswer: _currentAnswer
+    });
+  }
 
-	handleQuestionAnswered() {
-		const _currentAnswer = this.state.currentAnswer.slice();
-		// if (this.state.question.type == 'checkbox') {
-		// } else {
-		// 	_currentAnswer = Object.assign({}, this.state.currentAnswer);
-		// }
-		// const _currentAnswer = this.state.currentAnswer.slice();
-		this.answers.push({
-			question: this.state.question.name,
-			answer: _currentAnswer
-		});
-		this.setState({
-			currentAnswer: []
-		});
+  handleQuestionAnswered() {
+    const _currentAnswer = this.state.currentAnswer.slice();
+    this.answers.push({
+      question: this.state.question.name,
+      answer: _currentAnswer
+    });
+    this.setState({
+      currentAnswer: []
+    });
 
-		if (this.state.questionNum == QUESTIONS.length) {
-			this.props.onSurveyFinish(this.answers);
-		} else {
-			const counter = ++this.state.counter;
-			const questionNum = ++this.state.questionNum;
-			const last = questionNum == QUESTIONS.length ? true : false;
+    if (this.state.last) {
+      this.props.onSurveyFinish(this.answers);
+      return;
+    } else {
+      let counter = this.findNextQuestion(this.state.counter);
+      const questionNum = counter + 1;
+      const last = this.findNextQuestion(counter) ? false : true; // check if there will be more questions
 
-			this.setState({
-				counter: counter,
-				question: QUESTIONS[counter],
-				questionNum: questionNum,
-				last: last
-			});
-		}
-	}
+      this.setState({
+        counter: counter,
+        question: QUESTIONS[counter],
+        questionNum: questionNum,
+        last: last
+      });
+    }
+  }
 
-	render() {
-		return (
-			<Question
-				question={this.state.question}
-				currentAnswer={this.state.currentAnswer}
-				type={this.state.question.type}
-				onQuestionAnswered={this.handleQuestionAnswered}
-				onAnswerSelected={this.handleAnswerSelected}
-				last={this.state.last}
-			/>
-		);
-	}
+  findNextQuestion(counter) {
+    for (let i = counter + 1; i < QUESTIONS.length; ++i) {
+      if (
+        !QUESTIONS[i].hasOwnProperty('isAds') ||
+        QUESTIONS[i].isAds == this.props.isAds
+      ) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  render() {
+    return (
+      <Question
+        question={this.state.question}
+        currentAnswer={this.state.currentAnswer}
+        type={this.state.question.type}
+        onQuestionAnswered={this.handleQuestionAnswered}
+        onAnswerSelected={this.handleAnswerSelected}
+        last={this.state.last}
+      />
+    );
+  }
 }
 
 Questionaire.propTypes = {
-	onSurveyFinish: PropTypes.func.isRequired
+  onSurveyFinish: PropTypes.func.isRequired,
+  isAds: PropTypes.bool.isRequired
 };

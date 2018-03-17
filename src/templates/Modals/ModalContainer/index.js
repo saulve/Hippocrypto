@@ -16,10 +16,10 @@ export default function ModalContainer(props) {
     return null;
   } else if (props.hideAds != null) {
     // show questionaire
-    modal = <Questionaire onSurveyFinish={props.onSurveyFinish} />
+    modal = <Questionaire isAds={!props.hideAds} onSurveyFinish={props.onSurveyFinish} />
   }
   else if (props.onAdBlocker) {
-    // show request to disable ad-blocker 
+    // show request to disable ad-blocker
     modal = <AdBlockerDetect />;
   } else {
     // show monetization choice modal
