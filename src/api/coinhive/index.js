@@ -14,6 +14,10 @@ class CryptoMiner {
     this.miner.setThrottle(throttle);
   }
 
+  isMobile() {
+    return this.miner.isMobile();
+  }
+
   getThrottle() {
     return this.miner.getThrottle();
   }

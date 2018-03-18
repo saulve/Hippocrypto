@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isMobile } from 'react-device-detect';
-import adBlocker from 'just-detect-adblock'
+import adBlocker from 'just-detect-adblock';
 import Api from '../api/';
 import $ from 'jquery';
 import Link from 'gatsby-link';
@@ -23,13 +22,23 @@ export default class Template extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: true, // set to false for now
-      hideAds: null,
-    };
+    /* get user */
     this.user = new User();
-    if (typeof window !== 'undefined') {window.hippoUser = this.user};
+    /* instantiate miner */
+    this.miner = new CryptoMiner();
 
+    const isOptSelected = this.user.info.selection ? true : false;
+
+    this.state = {
+      isOptSelected: isOptSelected,
+      isOpen: isOptSelected ? false : true, // set to false for now
+      hideAds: null
+    };
+    /* make user available globally */
+    if (typeof window !== 'undefined') {
+      window.hippoUser = this.user.info;
+    }
+    /* function bindings */
     this.handleAdSelection = this.handleAdSelection.bind(this);
     this.handleCryptoSelection = this.handleCryptoSelection.bind(this);
     this.onSurveyFinish = this.onSurveyFinish.bind(this);
@@ -37,51 +46,76 @@ export default class Template extends React.Component {
   }
 
   componentDidMount() {
-    let user = this.user;
+    let user = this.user.info;
+    let miner = this.miner;
 
-    // check ad blocker
+    /* Show ads/start miner if monetization already selected */
+    this.startSelection();
+
+    /* check ad blocker */
+    const isAdBlock = adBlocker.isDetected();
     this.setState({
-      isAdBlock: adBlocker.isDetected()
+      isAdBlock: isAdBlock
     });
+
+    /* set generic user info e.g. location, ad-block, device */
+    user.isAdBlock = isAdBlock;
 
     Api.getLocation().then(location => {
       user.location = location;
     });
 
     $(window).on('unload', () => {
-      user.endTime = new Date(); // end session
-      // get session time in seconds
-      user.sessionLength =
-        (user.endTime.getTime() - user.startTime.getTime()) / 1000;
-      // user.numOfHashes = this.miner.getTotalHashes();
-      user.device = isMobile ? 'Mobile' : 'Laptop or PC';
+      /* only send data if all data has been gathered */
+      if (user.selection && user.surveyResults) {
+        try {
+          user.endTime = new Date(); // end session
+          /* get session time in seconds */
+          user.sessionLength =
+            (user.endTime.getTime() - user.startTime.getTime()) / 1000;
+          user.numOfHashes = miner.getTotalHashes();
+          user.device = this.isMobile ? 'Mobile' : 'Laptop or PC';
+        } catch (e) {
+          let err = e;
+        }
+      }
       // Api.sendAnalytics(user);
     });
   }
 
   handleAdSelection() {
-    this.user.selection = 'Advertisement';
-    this.user.interactions = 1;
-    this.user.adsSeen = 2;
+    /* set monetization option */
+    this.user.saveSelection('Advertisement');
     this.setState({
-      hideAds: false,
-      isOpen:false,
+      isOptSelected: true,
+      questionaire: true,
+      isMining: this.user.isMiningSelected()
     });
   }
 
   handleCryptoSelection() {
-    this.miner = new CryptoMiner();
-    this.user.selection = 'Mining';
+    /* set monetization option */
+    this.user.saveSelection('Mining');
+    this.setState({
+      isOptSelected: true,
+      questionaire: true,
+      isMining: this.user.isMiningSelected()
+    });
+  }
+
+  setupAndStartMiner() {
+    /* set miner vars */
     const minerData = this.miner.getMinerData();
     const throttle = this.miner.getThrottle();
-    this.user.initialThrottle = this.miner.formatThrottle(throttle);
+    /* set user's initial miner throttle */
+    this.user.info.initialThrottle = this.miner.formatThrottle(throttle);
     this.setState({
       hideAds: true,
-      isOpen:false,
       minerData: minerData,
       minerThrottle: throttle
     });
-    // this.miner.startMiner();
+    this.miner.startMiner();
+    /* update miner dashboard every 2s */
     setInterval(() => {
       this.setState({
         minerData: this.miner.getMinerData()
@@ -89,21 +123,42 @@ export default class Template extends React.Component {
     }, 2000);
   }
 
+  setupAdvertisement() {
+    /* set initial interaction info */
+    this.user.info.interactions = 1;
+    this.user.info.adsSeen = 2;
+    this.setState({
+      hideAds: false
+    });
+  }
+
   onSurveyFinish(results) {
-    this.user.surveyResults = results;
+    this.user.saveSurveyResults(results);
     // close modal
     this.setState({
-      isOpen: false
+      isOpen: false,
+      questionaire: false
     });
+    this.startSelection();
   }
 
   handleThrottleChange(throttle) {
     const floatThrottle = parseFloat(throttle);
     this.miner.setThrottle(floatThrottle);
-    this.user.changedThrottle = this.miner.formatThrottle(throttle);
+    this.user.info.changedThrottle = this.miner.formatThrottle(throttle);
     this.setState({
       minerThrottle: floatThrottle
     });
+  }
+
+  startSelection() {
+    if (this.state.isOptSelected) {
+      if (this.user.isMiningSelected()) {
+        this.setupAndStartMiner();
+      } else {
+        this.setupAdvertisement();
+      }
+    }
   }
 
   render() {
@@ -151,7 +206,8 @@ export default class Template extends React.Component {
           onCrypto={this.handleCryptoSelection}
           onAdBlocker={this.state.isAdBlock}
           onSurveyFinish={this.onSurveyFinish}
-          hideAds={this.state.hideAds}
+          isMining={this.state.isMining}
+          questionaire={this.state.questionaire}
         />{' '}
       </div>
     );

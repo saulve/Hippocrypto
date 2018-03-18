@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Advertisement(props) {
 	const { hideAds, className } = props;
 
-	if (hideAds || hideAds === null) {
+	if (hideAds || hideAds === null || typeof hideAds === 'undefined') {
       return null;
     }
 

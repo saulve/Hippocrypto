@@ -1,16 +1,30 @@
 class User {
   constructor() {
-    this.user = this.checkUser();
-    if (this.user) {
+    this.info = this.checkUser();
+    if (this.info) {
       // start new session
-      this.user.startTime = new Date();
+      this.info.startTime = new Date();
     }
 
-    return this.user;
+    return this;
   }
 
-  getUser() {
-    return this.user;
+  getUserInfo() {
+    return this.info;
+  }
+
+  isMiningSelected() {
+    return this.info.selection == 'Mining' ? true : false;
+  }
+
+  saveSelection(selection) {
+    this.info.selection = selection;
+    window.localStorage.setItem('hippo-usr', JSON.stringify(this.info));
+  }
+
+  saveSurveyResults(surveyResults) {
+    this.info.surveyResults = surveyResults;
+    window.localStorage.setItem('hippo-usr', JSON.stringify(this.info));
   }
 
   checkUser() {

