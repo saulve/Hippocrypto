@@ -22,11 +22,6 @@ export default class Questionaire extends React.Component {
 
   handleAnswerSelected(val) {
     let _currentAnswer;
-    if (val == 'Other') {
-      this.setState({
-        showOther: true
-      });
-    }
     const index = this.state.currentAnswer.indexOf(val);
     if (index == -1) {
       if (this.state.question.type == 'checkbox') {
@@ -95,7 +90,6 @@ export default class Questionaire extends React.Component {
         onQuestionAnswered={this.handleQuestionAnswered}
         onAnswerSelected={this.handleAnswerSelected}
         last={this.state.last}
-        showOther={this.state.showOther}
       />
     );
   }

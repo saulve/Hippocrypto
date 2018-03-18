@@ -36,8 +36,25 @@ export const QUESTIONS = [
     answers: ['Under 18', '18-24', '24-30', '30-36', '36 or above']
   },
   {
+    name: 'What is the highest level of education you have completed?',
+    type: 'radio',
+    answers: [
+      'High school or equivalent',
+      'Vocational/technical school',
+      'Some college',
+      "Bachelor's degree",
+      "Master's degree",
+      'Doctoral degree'
+    ]
+  },
+  {
+    name: 'What is your gender',
+    type: 'radio',
+    answers: ['Male', 'Female', 'Other']
+  },
+  {
     name:
-      'What is your view towards websites mining cryptocurrency in the web browser?',
+      'What is your view on websites mining cryptocurrency in the web browser?',
     type: 'radio',
     answers: [
       'Strongly negative',
@@ -58,7 +75,7 @@ export const QUESTIONS = [
       'I want to directly support the content creator',
       'I want to support cryptocurrency adoption',
       'I want to try out something new',
-      'Other'
+      'Neither of the above'
     ]
   },
   {
@@ -67,14 +84,24 @@ export const QUESTIONS = [
     isAds: true,
     showOther: true,
     answers: [
-      "I don't understand how cryptocurrency works",
+      "It didn't feel secure",
       "I'm on a mobile device and don't want my battery to be drained",
-      "I don't think it's financially worthwhile for content creator",
+      "I don't think it's financially worthwhile for the content creator",
       "I don't like browser based mining",
       "I don't like cryptocurrency",
       "I don't want my device's performance to be affected",
       "I don't want my device's hardware to degrade",
-      'Other'
+      'Neither of the above'
+    ]
+  },
+  {
+    name: 'Would you select cryptocurrency mining next time if you could keep to 50% of the mined cryptocurrency to yourself?',
+    type: 'radio',
+    isAds: true,
+    showOther: true,
+    answers: [
+      "Yes",
+      "No"
     ]
   }
 ];

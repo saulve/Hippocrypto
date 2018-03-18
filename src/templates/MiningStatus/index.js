@@ -1,48 +1,109 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RangeInput from '../RangeInput';
 
-export default function MiningStatus(props) {
-    const { hideAds, minerData } = props;
+export default class MiningStatus extends React.Component {
+  constructor(props) {
+    super(props);
 
-    if (!hideAds || hideAds === null) {
+    this.state = {
+      isThrotControlOpen: false
+    };
+
+    this.toggleThrottleControl = this.toggleThrottleControl.bind(this);
+    this.handleThrottleChange = this.handleThrottleChange.bind(this);
+    this.renderThrottleControls = this.renderThrottleControls.bind(this);
+  }
+
+  handleThrottleChange(value) {
+    const throttle = value;
+    this.props.handleThrottleChange(throttle)
+  }
+
+  toggleThrottleControl() {
+    const show = !this.state.isThrotControlOpen;
+    this.setState({
+      isThrotControlOpen: show
+    })
+  }
+
+  renderThrottleControls() {
+    return(
+      <RangeInput
+        currentThrottle={this.props.throttle}
+        handleThrottleChange={this.handleThrottleChange}
+      />
+    );
+  }
+
+  render() {
+    if (!this.props.hideAds || this.props.hideAds === null) {
       return null;
     }
-
     return (
-      <div className='grid__cell col-1/12--wide col-2/12--portable miner'>
+      <div className="grid__cell col-1/12--wide col-2/12--portable miner">
         <ul>
-          <li className='miner__metric'>
-            <a href='https://bitcoin.org/en/vocabulary#hash-rate' target="_blank">Hash rate</a>
+          <li className="miner__metric">
+            <a
+              href="https://bitcoin.org/en/vocabulary#hash-rate"
+              target="_blank"
+            >
+              Hash rate
+            </a>
             <br />
-            <span className='miner__result'> { Math.trunc(minerData.hashesPerSecond) }</span>
-            <span className='miner__result-suffix'>h/s</span>
+            <span className="miner__result">
+              {' '}
+              {Math.trunc(this.props.minerData.hashesPerSecond)}
+            </span>
+            <span className="miner__result-suffix">h/s</span>
           </li>
-          <li className='miner__metric'>
+          <li className="miner__metric">
             Total hashes submitted
             <br />
-            <span className='miner__result'> { Math.trunc(minerData.totalHashes) } </span>
+            <span className="miner__result">
+              {' '}
+              {Math.trunc(this.props.minerData.totalHashes)}{' '}
+            </span>
           </li>
-          <li className='miner__metric'>
+          <li className="miner__metric">
             Total hashes accepted
             <br />
-            <span className='miner__result'> { Math.trunc(minerData.acceptedHashes) } </span>
+            <span className="miner__result">
+              {' '}
+              {Math.trunc(this.props.minerData.acceptedHashes)}{' '}
+            </span>
           </li>
-          <li className='miner__metric'>
-            <a href='https://www.techopedia.com/definition/27857/thread-operating-systems' target="_blank">Number of threads</a>
+          <li className="miner__metric">
+            <a
+              href="https://www.techopedia.com/definition/27857/thread-operating-systems"
+              target="_blank"
+            >
+              Number of threads
+            </a>
             <br />
-            <span className='miner__result'> { minerData.numThreads } </span>
+            <span className="miner__result"> {this.props.minerData.numThreads} </span>
           </li>
-          <li className='miner__metric'>
+          <li
+            className="miner__metric"
+            onClick={this.toggleThrottleControl}
+          >
             Miner power
             <br />
-            <span className='miner__result'> { Math.round((1 - minerData.throttle) * 100) }%</span>
+            <span className="miner__result">
+              {' '}
+              {Math.round((1 - this.props.throttle) * 100)}%
+            </span>
           </li>
+          { this.state.isThrotControlOpen ? this.renderThrottleControls() : null }
         </ul>
       </div>
     );
+  }
 }
 
 MiningStatus.propTypes = {
   hideAds: PropTypes.bool,
   minerData: PropTypes.object,
+  throttle: PropTypes.number,
+  handleThrottleChange: PropTypes.func
 };

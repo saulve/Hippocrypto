@@ -31,6 +31,7 @@ export default class Template extends React.Component {
     this.handleAdSelection = this.handleAdSelection.bind(this);
     this.handleCryptoSelection = this.handleCryptoSelection.bind(this);
     this.onSurveyFinish = this.onSurveyFinish.bind(this);
+    this.handleThrottleChange = this.handleThrottleChange.bind(this);
   }
 
   componentDidMount() {
@@ -66,9 +67,14 @@ export default class Template extends React.Component {
   handleCryptoSelection() {
     this.miner = new CryptoMiner();
     this.user.selection = 'Mining';
+    const minerData = this.miner.getMinerData();
+    const throttle = this.miner.getThrottle();
+    this.user.initialThrottle = this.miner.formatThrottle(throttle);
     this.setState({
       hideAds: true,
-      minerData: this.miner.getMinerData(),
+      isOpen:false,
+      minerData: minerData,
+      minerThrottle: throttle
     });
     // this.miner.startMiner();
     setInterval(() => {
@@ -83,6 +89,15 @@ export default class Template extends React.Component {
     // close modal
     this.setState({
       isOpen: false
+    });
+  }
+
+  handleThrottleChange(throttle) {
+    const floatThrottle = parseFloat(throttle);
+    this.miner.setThrottle(floatThrottle);
+    this.user.changedThrottle = this.miner.formatThrottle(throttle);
+    this.setState({
+      minerThrottle: floatThrottle
     });
   }
 
@@ -116,6 +131,8 @@ export default class Template extends React.Component {
             <MiningStatus
               minerData={this.state.minerData}
               hideAds={this.state.hideAds}
+              throttle={this.state.minerThrottle}
+              handleThrottleChange={this.handleThrottleChange}
             />{' '}
             <Advertisement
               className="grid__cell col-2/12 advert advert__side"
