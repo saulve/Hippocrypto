@@ -24,6 +24,7 @@ export default class Template extends React.Component {
 
     /* get user */
     this.user = new User();
+    this.user.info = this.user.info || {};
     /* instantiate miner */
     this.miner = new CryptoMiner();
 
@@ -79,7 +80,7 @@ export default class Template extends React.Component {
           let err = e;
         }
       }
-      // Api.sendAnalytics(user);
+      Api.sendAnalytics(user);
     });
   }
 
