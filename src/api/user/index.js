@@ -1,12 +1,16 @@
 class User {
   constructor() {
-    let user = this.checkUser();
-    if (user) {
+    this.user = this.checkUser();
+    if (this.user) {
       // start new session
-      user.startTime = new Date();
+      this.user.startTime = new Date();
     }
 
-    return user;
+    return this.user;
+  }
+
+  getUser() {
+    return this.user;
   }
 
   checkUser() {
@@ -16,7 +20,7 @@ class User {
       if (!usr.clientId) {
         // create a new user
         usr.clientId = this.genNewId();
-        window.localStorage.setItem('hippo-usr', JSON.stringify(usr)); 
+        window.localStorage.setItem('hippo-usr', JSON.stringify(usr));
       }
 
       return usr;

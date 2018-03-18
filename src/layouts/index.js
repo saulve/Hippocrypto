@@ -28,6 +28,8 @@ export default class Template extends React.Component {
       hideAds: null,
     };
     this.user = new User();
+    if (typeof window !== 'undefined') {window.hippoUser = this.user};
+
     this.handleAdSelection = this.handleAdSelection.bind(this);
     this.handleCryptoSelection = this.handleCryptoSelection.bind(this);
     this.onSurveyFinish = this.onSurveyFinish.bind(this);
@@ -59,8 +61,11 @@ export default class Template extends React.Component {
 
   handleAdSelection() {
     this.user.selection = 'Advertisement';
+    this.user.interactions = 1;
+    this.user.adsSeen = 2;
     this.setState({
       hideAds: false,
+      isOpen:false,
     });
   }
 
