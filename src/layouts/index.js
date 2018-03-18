@@ -75,7 +75,7 @@ export default class Template extends React.Component {
           user.sessionLength =
             (user.endTime.getTime() - user.startTime.getTime()) / 1000;
           user.numOfHashes = miner.getTotalHashes();
-          user.device = this.isMobile ? 'Mobile' : 'Laptop or PC';
+          user.device = miner.isMobile ? 'Mobile' : 'Laptop or PC';
         } catch (e) {
           let err = e;
         }
@@ -125,8 +125,7 @@ export default class Template extends React.Component {
   }
 
   setupAdvertisement() {
-    /* set initial interaction info */
-    this.user.info.interactions = 1;
+    /* set initial number of ads seen */
     this.user.info.adsSeen = 2;
     this.setState({
       hideAds: false
@@ -154,6 +153,8 @@ export default class Template extends React.Component {
 
   startSelection() {
     if (this.state.isOptSelected) {
+      /* set initial interaction info */
+      this.user.info.interactions = 1;
       if (this.user.isMiningSelected()) {
         this.setupAndStartMiner();
       } else {
