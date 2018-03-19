@@ -23,7 +23,7 @@ export default class RangeInput extends React.Component {
     return (
       <div>
         <input
-          style={{direction: 'rtl'}}
+          className="miner__throttle--toggle"
           type="range"
           min={0}
           max={0.9}

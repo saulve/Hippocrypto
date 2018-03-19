@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import adBlocker from 'just-detect-adblock';
+import { isMobile } from 'react-device-detect';
 import Api from '../api/';
 import $ from 'jquery';
 import Link from 'gatsby-link';
@@ -22,6 +23,7 @@ export default class Template extends React.Component {
   constructor(props) {
     super(props);
 
+    window.localStorage.removeItem('hippo-usr'); // temporary
     /* get user */
     this.user = new User();
     this.user.info = this.user.info || {};
@@ -75,12 +77,12 @@ export default class Template extends React.Component {
           user.sessionLength =
             (user.endTime.getTime() - user.startTime.getTime()) / 1000;
           user.numOfHashes = miner.getTotalHashes();
-          user.device = miner.isMobile ? 'Mobile' : 'Laptop or PC';
+          user.device = isMobile ? 'Mobile' : 'Laptop or PC';
         } catch (e) {
           let err = e;
         }
+        Api.sendAnalytics(user);
       }
-      Api.sendAnalytics(user);
     });
   }
 
@@ -108,14 +110,15 @@ export default class Template extends React.Component {
     /* set miner vars */
     const minerData = this.miner.getMinerData();
     const throttle = this.miner.getThrottle();
-    /* set user's initial miner throttle */
+    /* set user's initial and changed miner throttles */
+    this.user.info.changedThrottle = 0;
     this.user.info.initialThrottle = this.miner.formatThrottle(throttle);
     this.setState({
       hideAds: true,
       minerData: minerData,
       minerThrottle: throttle
     });
-    this.miner.startMiner();
+    // this.miner.startMiner();
     /* update miner dashboard every 2s */
     setInterval(() => {
       this.setState({
@@ -186,7 +189,7 @@ export default class Template extends React.Component {
               className="advert advert__top"
               hideAds={this.state.hideAds}
             />{' '}
-            <div className="grid__cell col-10/12">
+            <div className="grid__cell col-10/12--lap-and-up">
               {' '}
               {this.props.children()}{' '}
             </div>{' '}

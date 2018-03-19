@@ -1,16 +1,43 @@
 .miner {
   position: sticky;
-  top: 1.45rem;
+  top: 6rem;
+  float: right;
+
+  @media screen and (max-width: 800px) {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    top: unset;
+    padding: 0px;
+    font-size: 0.8rem;
+    max-height: 100px;
+  }
+
+  @media screen and (max-width: 499px) {
+    font-size: 0.6rem;
+    max-height: 80px;
+  }
 
   & ul {
     list-style: none;
     padding: $small-padding;
-    background: $warm-white;
     border-radius: 4px;
     margin: 0px;
+    background: #fff;
+    box-shadow: $general-shadow;
+    color: $general-font-color;
+
+    @media screen and (max-width: 800px) {
+      display: flex;
+      justify-content: space-around;
+    }
 
     & li {
       padding-top: 15px;
+      @media screen and (max-width: 499px) {
+        padding: 0px;
+      }
 
       &:last-child {
         padding-bottom: 15px;
@@ -25,13 +52,28 @@
   &__result {
     text-align: center;
     font-size: 26px;
-  }
 
-  &__result-suffix {
-    font-size: 12px;
+    &-suffix {
+      font-size: 12px;
+    }
+
+    &--secondary {
+      @media screen and (max-width: 499px) {
+        display: none;
+      }
+    }
   }
 
   &__metric {
     text-align: center;
+  }
+  &__throttle {
+    &:hover {
+      cursor: pointer;
+    }
+    &--toggle {
+      direction: rtl;
+      width: 100%;
+    }
   }
 }

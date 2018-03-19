@@ -41,7 +41,7 @@ export default class MiningStatus extends React.Component {
       return null;
     }
     return (
-      <div className="grid__cell col-1/12--wide col-2/12--portable miner">
+      <div className="grid__cell col-2/12 col-1/12--widescreen miner">
         <ul>
           <li className="miner__metric">
             <a
@@ -65,7 +65,7 @@ export default class MiningStatus extends React.Component {
               {Math.trunc(this.props.minerData.totalHashes)}{' '}
             </span>
           </li>
-          <li className="miner__metric">
+          <li className="miner__metric miner__result--secondary">
             Total hashes accepted
             <br />
             <span className="miner__result">
@@ -73,7 +73,7 @@ export default class MiningStatus extends React.Component {
               {Math.trunc(this.props.minerData.acceptedHashes)}{' '}
             </span>
           </li>
-          <li className="miner__metric">
+          <li className="miner__metric miner__result--secondary">
             <a
               href="https://www.techopedia.com/definition/27857/thread-operating-systems"
               target="_blank"
@@ -84,7 +84,7 @@ export default class MiningStatus extends React.Component {
             <span className="miner__result"> {this.props.minerData.numThreads} </span>
           </li>
           <li
-            className="miner__metric"
+            className="miner__metric miner__throttle"
             onClick={this.toggleThrottleControl}
           >
             Miner power

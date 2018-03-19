@@ -15,7 +15,7 @@ export default class Questionaire extends React.Component {
       currentAnswer: [],
       showOther: false
     };
-    this.answers = [];
+    this.answers = {};
     this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
@@ -44,10 +44,11 @@ export default class Questionaire extends React.Component {
 
   handleQuestionAnswered() {
     const _currentAnswer = this.state.currentAnswer.slice();
-    this.answers.push({
+    const shortName = this.state.question.shortName;
+    this.answers[shortName] = {
       question: this.state.question.name,
       answer: _currentAnswer
-    });
+    };
     this.setState({
       currentAnswer: []
     });

@@ -21,6 +21,15 @@ body {
   padding: $general-padding;
   position: relative;
   top: 80px;
+
+  @media screen and (max-width: 499px) {
+    padding: $small-padding;
+    margin-bottom: 80px;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 100px;
+  }
 }
 
 .backdrop {

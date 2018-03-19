@@ -20,6 +20,7 @@ export const USER_CHOICE = {
 
 export const QUESTIONS = [
   {
+    shortName: 'cryptoFamiliarity',
     name: 'How familiar are you with cryptocurrency?',
     type: 'radio',
     answers: [
@@ -31,11 +32,13 @@ export const QUESTIONS = [
     ]
   },
   {
+    shortName: 'userAge',
     name: 'What is your age?',
     type: 'radio',
     answers: ['Under 18', '18-24', '24-30', '30-36', '36 or above']
   },
   {
+    shortName: 'userEducationLevel',
     name: 'What is the highest level of education you have completed?',
     type: 'radio',
     answers: [
@@ -48,11 +51,13 @@ export const QUESTIONS = [
     ]
   },
   {
+    shortName: 'userGender',
     name: 'What is your gender',
     type: 'radio',
     answers: ['Male', 'Female', 'Other']
   },
   {
+    shortName: 'userViewOfMining',
     name:
       'What is your view on websites mining cryptocurrency in the web browser?',
     type: 'radio',
@@ -66,6 +71,7 @@ export const QUESTIONS = [
   },
 
   {
+    shortName: 'miningReason',
     name: 'Did you select cryptocurrency mining because:',
     type: 'checkbox',
     isAds: false,
@@ -79,6 +85,7 @@ export const QUESTIONS = [
     ]
   },
   {
+    shortName: 'adsReason',
     name: 'Did you select advertisement because:',
     type: 'checkbox',
     isAds: true,
@@ -95,6 +102,7 @@ export const QUESTIONS = [
     ]
   },
   {
+    shortName: 'wouldUserMineForReward',
     name: 'Would you select cryptocurrency mining next time if you could keep to 50% of the mined cryptocurrency to yourself?',
     type: 'radio',
     isAds: true,
