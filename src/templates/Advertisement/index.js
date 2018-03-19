@@ -10,7 +10,9 @@ export default function Advertisement(props) {
 
     return (
       <div className={ className }>
+      <div className="advert">
         Advertisement
+      </div>
       </div>
     );
 }

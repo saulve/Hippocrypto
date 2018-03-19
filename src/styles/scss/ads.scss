@@ -1,17 +1,28 @@
 .advert {
   background: #ccc;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__top {
     height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: $general-margin;
+  }
+
+  &__bottom {
+    height: 90px;
+    width: 100%;
+    margin-top: $general-margin;
   }
 
   &__side {
     height: 100%;
     position: absolute;
+    right: $general-margin;
     padding: 0;
     text-align: center;
+    max-height: 590px;
   }
 }

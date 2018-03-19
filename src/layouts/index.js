@@ -186,7 +186,7 @@ export default class Template extends React.Component {
         <div className="container">
           <div className="grid">
             <Advertisement
-              className="advert advert__top"
+              className="grid__cell advert__top"
               hideAds={this.state.hideAds}
             />{' '}
             <div className="grid__cell col-10/12--lap-and-up">
@@ -200,9 +200,9 @@ export default class Template extends React.Component {
               handleThrottleChange={this.handleThrottleChange}
             />{' '}
             <Advertisement
-              className="grid__cell col-2/12 advert advert__side"
+              className={`grid__cell col-2/12 ${isMobile ? "advert__bottom" : "advert__side"}`}
               hideAds={this.state.hideAds}
-            />{' '}
+            />
           </div>{' '}
         </div>{' '}
         <ModalContainer
