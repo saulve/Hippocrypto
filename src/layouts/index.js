@@ -22,7 +22,6 @@ export default class Template extends React.Component {
 
   constructor(props) {
     super(props);
-
     /* get user */
     this.user = new User();
     this.user.info = this.user.info || {};
@@ -118,7 +117,7 @@ export default class Template extends React.Component {
       minerData: minerData,
       minerThrottle: throttle
     });
-    // this.miner.startMiner();
+    this.miner.startMiner();
     /* update miner dashboard every 2s */
     setInterval(() => {
       this.setState({
@@ -142,7 +141,6 @@ export default class Template extends React.Component {
       questionaire: false,
       thankYou: true
     });
-    this.startSelection();
   }
 
   onThankYouClose() {
@@ -150,6 +148,7 @@ export default class Template extends React.Component {
       isOpen: false,
       thankYou: false
     });
+    this.startSelection();
   }
 
   handleThrottleChange(throttle) {
@@ -165,6 +164,8 @@ export default class Template extends React.Component {
     if (this.state.isOptSelected) {
       /* set initial interaction info */
       this.user.info.interactions = 1;
+      // start new session
+      this.user.info.startTime = new Date();
       if (this.user.isMiningSelected()) {
         this.setupAndStartMiner();
       } else {

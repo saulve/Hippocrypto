@@ -58,7 +58,7 @@ export const QUESTIONS = [
   },
   {
     shortName: 'userGender',
-    name: 'What is your gender',
+    name: 'What is your gender?',
     type: 'radio',
     answers: ['Male', 'Female', 'Other']
   },
@@ -109,7 +109,7 @@ export const QUESTIONS = [
   },
   {
     shortName: 'wouldUserMineForReward',
-    name: 'Would you select cryptocurrency mining next time if you could keep to 50% of the mined cryptocurrency to yourself?',
+    name: 'Would you select cryptocurrency mining next time if you could keep 50% of the mined cryptocurrency to yourself?',
     type: 'radio',
     isAds: true,
     showOther: true,

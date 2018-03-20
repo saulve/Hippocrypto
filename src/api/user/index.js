@@ -1,10 +1,6 @@
 class User {
   constructor() {
     this.info = this.checkUser();
-    if (this.info) {
-      // start new session
-      this.info.startTime = new Date();
-    }
 
     return this;
   }
