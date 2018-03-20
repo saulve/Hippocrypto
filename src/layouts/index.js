@@ -32,7 +32,7 @@ export default class Template extends React.Component {
 
     this.state = {
       isOptSelected: isOptSelected,
-      isOpen: isOptSelected ? false : true, // set to false for now
+      openModal: false,
       hideAds: null
     };
     /* make user available globally */
@@ -50,6 +50,11 @@ export default class Template extends React.Component {
   componentDidMount() {
     let user = this.user.info;
     let miner = this.miner;
+
+    /* set modal state here to avoid flickering */
+    this.setState({
+      openModal: !this.state.isOptSelected, // show modal only if monetization is not set
+    });
 
     /* Show ads/start miner if monetization already selected */
     this.startSelection();
@@ -145,7 +150,7 @@ export default class Template extends React.Component {
 
   onThankYouClose() {
     this.setState({
-      isOpen: false,
+      openModal: false,
       thankYou: false
     });
     this.startSelection();
@@ -208,13 +213,15 @@ export default class Template extends React.Component {
               handleThrottleChange={this.handleThrottleChange}
             />{' '}
             <Advertisement
-              className={`grid__cell col-2/12 ${isMobile ? "advert__bottom" : "advert__side"}`}
+              className={`grid__cell col-2/12 ${
+                isMobile ? 'advert__bottom' : 'advert__side'
+              }`}
               hideAds={this.state.hideAds}
             />
           </div>{' '}
         </div>{' '}
         <ModalContainer
-          show={this.state.isOpen}
+          show={this.state.openModal}
           onAds={this.handleAdSelection}
           onCrypto={this.handleCryptoSelection}
           onAdBlocker={this.state.isAdBlock}
