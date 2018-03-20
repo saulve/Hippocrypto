@@ -81,7 +81,7 @@ export default class Template extends React.Component {
         } catch (e) {
           let err = e;
         }
-        Api.sendAnalytics(user);
+        // Api.sendAnalytics(user);
       }
     });
   }

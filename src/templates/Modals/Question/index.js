@@ -10,7 +10,7 @@ export default function Question(props) {
   }
 
   return (
-    <div>
+    <div className="modal__quest">
       <h3>{props.question.name}</h3>
       <MultiChoiceInput
           answers={props.question.answers}
@@ -18,6 +18,7 @@ export default function Question(props) {
           onAnswerSelected={handleAnswerSelected}
           type={props.type}
         />
+      <div className="modal__footer">
       <button
         className="modal__button"
         onClick={props.onQuestionAnswered}
@@ -26,6 +27,7 @@ export default function Question(props) {
         {' '}
         {props.last ? 'Submit' : 'Next'}
       </button>
+      </div>
     </div>
   );
 }

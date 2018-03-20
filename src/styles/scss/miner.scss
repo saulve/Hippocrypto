@@ -1,3 +1,25 @@
+$k: .1;
+$track-w: 12rem;
+$track-h: .02*$track-w;
+$thumb-d: $k*$track-w;
+
+@mixin track() {
+  border: none;
+  width: $track-w;
+  height: $track-h;
+  border-radius: 0.5*$track-h;
+  background: #f7f5f5;
+}
+
+@mixin thumb() {
+  border: none;
+  width: $thumb-d;
+  height: $thumb-d;
+  border-radius: 50%;
+  border: 1px solid #f7f5f5;
+  background: #325c80;
+}
+
 .miner {
   position: sticky;
   top: 6rem;
@@ -38,10 +60,6 @@
       @media screen and (max-width: 499px) {
         padding: 0px;
       }
-
-      &:last-child {
-        padding-bottom: 15px;
-      }
     }
 
     & a {
@@ -72,8 +90,40 @@
       cursor: pointer;
     }
     &--toggle {
-      direction: rtl;
-      width: 100%;
+      display: flex;
+      max-width: 80px;
+      @media screen and (min-width: 801px) {
+        max-width: 100%;
+      }
+      & input[type=range] {
+        direction: rtl;
+        width: 100%;
+        outline: none;
+
+        &, &::-webkit-slider-thumb { -webkit-appearance: none }
+        &::-webkit-slider-runnable-track {
+          -webkit-appearance: none;
+          @include track;
+        }
+        &::-moz-range-track {
+          @include track;
+        }
+        &::-ms-track {
+          @include track;
+        }
+
+        &::-webkit-slider-thumb {
+          margin-top: 0.5*($track-h - $thumb-d);
+          @include thumb;
+        }
+        &::-moz-range-thumb {
+          @include thumb;
+        }
+        &::-ms-thumb {
+          margin-top: 0;
+          @include thumb;
+        }
+      }
     }
   }
 }

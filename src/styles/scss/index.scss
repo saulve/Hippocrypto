@@ -9,9 +9,7 @@
 @import 'article';
 @import 'tags';
 @import 'navbar';
-
-$ad-mode-color: #5596e6;
-$crypto-mode-color: #006d5d;
+@import 'modal';
 
 body {
   background: $warm-white;
@@ -44,49 +42,6 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 100;
-}
-
-.modal {
-  background-color: #fff;
-  border-radius: 5px;
-  min-width: 300px;
-  max-width: 400px;
-  min-height: 300px;
-  margin: 0 auto;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-
-  &__button {
-    cursor: pointer;
-    border: 2px solid #000;
-    background: #fff;
-    color: #000;
-    border-radius: 4px;
-    padding: 15px 17px;
-
-    &:hover {
-      background: #ccc;
-    }
-
-    &--ads {
-      border: 2px solid $ad-mode-color;
-    }
-
-    &--crypto {
-      border: 2px solid $crypto-mode-color;
-    }
-  }
-
-  &__footer {
-    display: flex;
-    justify-content: center;
-    margin-top: $general-margin-top;
-
-    & button:not(:last-child) {
-      margin-right: 5px;
-    }
-  }
 }
 
 .app {

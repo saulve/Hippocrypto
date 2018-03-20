@@ -1,0 +1,59 @@
+.modal {
+  background-color: #fff;
+  border-radius: 5px;
+  min-width: 300px;
+  max-width: 400px;
+  min-height: 300px;
+  margin: 0 auto;
+  padding: 30px;
+  height: 400px;
+  overflow: auto;
+
+  &__button {
+    cursor: pointer;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    border-radius: 4px;
+    padding: 15px 17px;
+
+    &:hover {
+      background: #ccc;
+    }
+
+    &--ads {
+      border: 2px solid $ad-mode-color;
+    }
+
+    &--crypto {
+      border: 2px solid $crypto-mode-color;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: $general-margin;
+    margin-top: $general-margin;
+
+    & button:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+
+  &__quest {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &--answers {
+      list-style: none;
+      margin: 0px;
+
+      & label {
+        padding-left: $small-padding;
+      }
+    }
+  }
+}

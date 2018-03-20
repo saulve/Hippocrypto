@@ -21,9 +21,8 @@ export default class RangeInput extends React.Component {
     const { value } = this.state;
 
     return (
-      <div>
+      <li className="miner__throttle--toggle">
         <input
-          className="miner__throttle--toggle"
           type="range"
           min={0}
           max={0.9}
@@ -31,7 +30,7 @@ export default class RangeInput extends React.Component {
           step={0.01}
           onChange={this.handleChange}
         />
-      </div>
+      </li>
     );
   }
 }

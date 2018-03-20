@@ -19,7 +19,7 @@ export default function MultiChoiceInput(props) {
 	}
 
 	return (
-    <ul>
+    <ul className="modal__quest--answers">
       {props.answers.map(renderAnswerOptions)}
     </ul> );
 }
