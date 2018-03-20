@@ -23,7 +23,6 @@ export default class Template extends React.Component {
   constructor(props) {
     super(props);
 
-    window.localStorage.removeItem('hippo-usr'); // temporary
     /* get user */
     this.user = new User();
     this.user.info = this.user.info || {};
@@ -45,6 +44,7 @@ export default class Template extends React.Component {
     this.handleAdSelection = this.handleAdSelection.bind(this);
     this.handleCryptoSelection = this.handleCryptoSelection.bind(this);
     this.onSurveyFinish = this.onSurveyFinish.bind(this);
+    this.onThankYouClose = this.onThankYouClose.bind(this);
     this.handleThrottleChange = this.handleThrottleChange.bind(this);
   }
 
@@ -81,7 +81,7 @@ export default class Template extends React.Component {
         } catch (e) {
           let err = e;
         }
-        // Api.sendAnalytics(user);
+        Api.sendAnalytics(user);
       }
     });
   }
@@ -139,10 +139,17 @@ export default class Template extends React.Component {
     this.user.saveSurveyResults(results);
     // close modal
     this.setState({
-      isOpen: false,
-      questionaire: false
+      questionaire: false,
+      thankYou: true
     });
     this.startSelection();
+  }
+
+  onThankYouClose() {
+    this.setState({
+      isOpen: false,
+      thankYou: false
+    });
   }
 
   handleThrottleChange(throttle) {
@@ -211,8 +218,10 @@ export default class Template extends React.Component {
           onCrypto={this.handleCryptoSelection}
           onAdBlocker={this.state.isAdBlock}
           onSurveyFinish={this.onSurveyFinish}
+          onThankYouClose={this.onThankYouClose}
           isMining={this.state.isMining}
           questionaire={this.state.questionaire}
+          thankYou={this.state.thankYou}
         />{' '}
       </div>
     );

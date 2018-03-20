@@ -18,6 +18,12 @@ export const USER_CHOICE = {
   BUTTON_MINING: 'Computing power'
 };
 
+export const THANK_YOU = {
+  HEADER: 'Thank you!',
+  MESSAGE: "Your time is greatly appreciated. This was a one-time survey and you won't be prompted again. Have a nice day!",
+  SUB_MESSAGE: "You can adjust the miner's power at any point as shown in the image"
+};
+
 export const QUESTIONS = [
   {
     shortName: 'cryptoFamiliarity',
