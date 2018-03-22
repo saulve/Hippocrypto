@@ -1,10 +1,5 @@
 import React from 'react';
-import GatsbyLink from 'gatsby-link';
-import Img from 'gatsby-image';
-import Helmet from 'react-helmet';
-
-import Link from '../components/Link';
-import Tags from '../components/Tags';
+import Article from '../templates/Article';
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark;
@@ -16,28 +11,15 @@ export default function Index({ data }) {
         .map(({ node: post }) => {
           if (post.frontmatter.draft !== 'true') {
             return (
-              <GatsbyLink
-                className="article"
-                key={post.id}
-                to={post.frontmatter.path}
-              >
-                <div className="article__thumb">
-                  <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
-                </div>
-                <div className="article__body">
-                  <h2 className="article__title">
-                    {post.frontmatter.title}
-                    <br />
-                    <span className="article__date">
-                      {post.frontmatter.date}
-                    </span>
-                  </h2>
-                  <p>{post.excerpt}</p>
-                </div>
-                <div className="article__footer">
-                  <Tags list={post.frontmatter.tags || []} />
-                </div>
-              </GatsbyLink>
+              <Article
+                id={post.id}
+                link={post.frontmatter.path}
+                title={post.frontmatter.title}
+                date={post.frontmatter.date}
+                excerpt={post.excerpt}
+                thumbnail={post.frontmatter.feature.childImageSharp.sizes}
+                tags={post.frontmatter.tags || []}
+              />
             );
           }
         })}

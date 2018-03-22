@@ -3,14 +3,14 @@ path: "/the-hitchhikers-guide-to-ethereum-transactions"
 date: "2018-03-01T20:34:34.264Z"
 title: "The Hitchhikers Guide To Ethereum Transactions"
 draft: "false"
-feature: "ahmed-saffu-456002-unsplash.jpg"
+feature: "./ahmed-saffu-456002-unsplash.jpg"
 credit: "Photo by Ahmed Saffu on Unsplash"
 tags: ['Ethereum', 'Tips', 'ICOS']
 ---
 
 Getting started with Ethereum transactions can be a cumbersome task. Terms like _gas price_ and _gas limit_ can be confusing to grasp for someone who's just starting to use blockchain. On top of that, the current wallets are not 100% user-friendly yet, which can lead to people making mistakes and resulting in their transactions being stuck in a limbo to being completely lost. Therefore, in this article I've gathered some insights and personal tips that I use myself, which will hopefully be useful for those who've just started or have been using Ethereum for a while.
 
-All of you may have different questions right now: 
+All of you may have different questions right now:
 - _"I have a token on an exchange how do I store it in my wallet?"_
 - _"I want to participate in an ICO, how do I do that?"_
 - _"Can I send Ethereum from my smartphone?"_

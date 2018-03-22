@@ -22,6 +22,8 @@ export default function Template({ data, pathContext }) {
         <h1 className="article__title">
           {post.frontmatter.title}
           <br />
+          Time to read: {post.timeToRead}
+          <br />
           <span className="article__date">{post.frontmatter.date}</span>
         </h1>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -58,6 +60,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      timeToRead
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path

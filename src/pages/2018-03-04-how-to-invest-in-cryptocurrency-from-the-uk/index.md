@@ -3,7 +3,7 @@ path: "/how-to-invest-in-cryptocurrency-from-the-uk"
 date: "2018-03-04T16:51:54.121Z"
 title: "How To Invest In Cryptocurrency From The UK"
 draft: "false"
-feature: "chris-lawton-95183-unsplash.jpg"
+feature: "./chris-lawton-95183-unsplash.jpg"
 credit: "Photo by Chris Lawton on Unsplash"
 tags: ['How to', 'Tips']
 ---

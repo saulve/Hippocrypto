@@ -4,11 +4,11 @@ date: "2018-03-01T12:19:41.979Z"
 title: "Metamask vs MyEtherWallet - which to choose?"
 draft: "false"
 tags: ['MyEtherWallet', 'Metamask', 'Ethereum']
-feature: "andrea-natali-447536-unsplash.jpg"
+feature: "./andrea-natali-447536-unsplash.jpg"
 credit: "Photo by Andrea Natali on Unsplash"
 ---
 
-From Mt. Gox, to more recently Bitgrail - history keeps showing us that cryptocurrency exchanges are not a suitable place to keep your coins. The burning question that crosses the minds of the people new to Ethereum (or cryptocurrency in general) is where to store their precious Ether and other ERC-20 tokens? The two most popular solutions at the moment are [Metamask](https://metamask.io/) and [MyEtherWallet](myetherwallet.com). Whilst neither of them are easy enough for your grandma to use (yet), both of these applications are free, have a large community backing and are widely used Ethereum wallets. So which one to use? 
+From Mt. Gox, to more recently Bitgrail - history keeps showing us that cryptocurrency exchanges are not a suitable place to keep your coins. The burning question that crosses the minds of the people new to Ethereum (or cryptocurrency in general) is where to store their precious Ether and other ERC-20 tokens? The two most popular solutions at the moment are [Metamask](https://metamask.io/) and [MyEtherWallet](myetherwallet.com). Whilst neither of them are easy enough for your grandma to use (yet), both of these applications are free, have a large community backing and are widely used Ethereum wallets. So which one to use?
 
 ## MetaMask
 
