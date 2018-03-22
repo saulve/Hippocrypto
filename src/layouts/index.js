@@ -187,7 +187,7 @@ export default class Template extends React.Component {
         <Head
           title={`${siteMetadata.title} | Homepage`}
           siteDescription={siteMetadata.description}
-          siteImage={siteMetadata.url + logo}
+          siteImage={siteMetadata.url_2 + logo}
           siteTitle={siteMetadata.title}
           url={siteMetadata.url}
         />
@@ -239,6 +239,7 @@ export const pageQuery = graphql`
         title
         description
         url
+        url_2
       }
     }
   }

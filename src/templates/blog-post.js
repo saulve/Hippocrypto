@@ -16,7 +16,7 @@ export default function Template({ data, pathContext }) {
       <Head
         title={siteMetadata.title + ' | ' + post.frontmatter.title}
         siteDescription={post.excerpt}
-        siteImage={siteMetadata.url + post.frontmatter.feature.childImageSharp.sizes.src}
+        siteImage={siteMetadata.url_2 + post.frontmatter.feature.childImageSharp.sizes.src}
         siteTitle={siteMetadata.title}
         url={siteMetadata.url + post.frontmatter.path}
       />
@@ -65,6 +65,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         url
+        url_2
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {

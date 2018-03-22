@@ -6,7 +6,9 @@ module.exports = {
     title: 'Hippocrypto',
     description: 'Experimental cryptocurrency news website',
     keywords: 'cryptocurrency, ethereum, erc20, metamask, bitcoin',
-    url: 'https://www.hippocrypto.me'
+    url: 'https://www.hippocrypto.me',
+    // Facebook does not fetch https image previews *facepalm*
+    url_2: 'http://www.hippocrypto.me'
   },
   pathPrefix: process.env.CI ? `/${name}` : `/`,
   plugins: [
