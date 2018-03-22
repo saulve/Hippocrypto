@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import Img from 'gatsby-image';
 import BackIcon from 'react-icons/lib/fa/chevron-left';
 import ForwardIcon from 'react-icons/lib/fa/chevron-right';
+import Hourglass from 'react-icons/lib/fa/hourglass-2';
 
 import Link from '../components/Link';
 import Tags from '../components/Tags';
@@ -22,9 +23,8 @@ export default function Template({ data, pathContext }) {
         <h1 className="article__title">
           {post.frontmatter.title}
           <br />
-          Time to read: {post.timeToRead}
-          <br />
           <span className="article__date">{post.frontmatter.date}</span>
+          <span className="article__time-to-read"><Hourglass />{post.timeToRead} minutes</span>
         </h1>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <Tags list={post.frontmatter.tags || []} />

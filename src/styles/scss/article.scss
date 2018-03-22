@@ -85,6 +85,7 @@
     }
     & .article__title {
       text-align: center;
+      position: relative
     }
   }
 
@@ -96,6 +97,22 @@
   &__date {
     font-size: 0.75rem;
     color: #555;
+  }
+
+  &__time-to-read {
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    right: 0px;
+    padding-bottom: calc(0.40625rem - 1px);
+
+    @media screen and (max-width: 499px) {
+      position: unset;
+      justify-content: center;
+      padding-top: $small-padding;
+    }
   }
 
   &__navigation {
