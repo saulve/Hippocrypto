@@ -14,7 +14,7 @@ export default function Tags({ pathContext, data }) {
       <Head
         title={`${siteMetadata.title} | Tags`}
         siteDescription={siteMetadata.description}
-        siteImage={logo}
+        siteImage={siteMetadata.url + logo}
         siteTitle={siteMetadata.title}
         url={`${siteMetadata.url}/tags/${tag}`}
       />

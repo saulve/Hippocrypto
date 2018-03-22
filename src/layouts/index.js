@@ -181,16 +181,17 @@ export default class Template extends React.Component {
   }
 
   render() {
+    const siteMetadata = this.props.data.site.siteMetadata;
     return (
       <div className="app">
         <Head
-          title={`${this.props.data.site.siteMetadata.title} | Homepage`}
-          siteDescription={this.props.data.site.siteMetadata.description}
-          siteImage={logo}
-          siteTitle={this.props.data.site.siteMetadata.title}
-          url={this.props.data.site.siteMetadata.url}
+          title={`${siteMetadata.title} | Homepage`}
+          siteDescription={siteMetadata.description}
+          siteImage={siteMetadata.url + logo}
+          siteTitle={siteMetadata.title}
+          url={siteMetadata.url}
         />
-        <Navbar siteTitle={this.props.data.site.siteMetadata.title} />
+        <Navbar siteTitle={siteMetadata.title} />
         <div className="container">
           <div className="grid">
             <Advertisement
