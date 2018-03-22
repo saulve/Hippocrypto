@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { THANK_YOU } from '../../../constants/modal-strings.js';
-import toggleExampleGif from '../../../../static/mining-toggle-explanation.gif';
+import toggleExampleGif from '../../../../assets/mining-toggle-explanation.gif';
 
 export default function ThankYou(props) {
   const renderToggleExample = () => {

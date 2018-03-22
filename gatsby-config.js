@@ -3,7 +3,10 @@ const { name } = require('./package.json');
 module.exports = {
   siteMetadata: {
     author: 'Hippocrypto',
-    title: 'Hippocrypto'
+    title: 'Hippocrypto',
+    description: 'Experimental cryptocurrency news website',
+    keywords: 'cryptocurrency, ethereum, erc20, metamask, bitcoin',
+    url: 'https://www.hippocrypto.me'
   },
   pathPrefix: process.env.CI ? `/${name}` : `/`,
   plugins: [

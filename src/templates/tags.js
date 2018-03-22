@@ -1,14 +1,23 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
 import Article from './Article';
-
+import Head from './Head';
 import Link from '../components/Link';
+import logo from '../../assets/hippo.face_black.png';
 
 export default function Tags({ pathContext, data }) {
   const { tag } = pathContext;
   const { edges: posts } = data.allMarkdownRemark;
+  const siteMetadata = data.site.siteMetadata;
   return (
     <div>
+      <Head
+        title={`${siteMetadata.title} | Tags`}
+        siteDescription={siteMetadata.description}
+        siteImage={logo}
+        siteTitle={siteMetadata.title}
+        url={`${siteMetadata.url}/tags/${tag}`}
+      />
       <h1>
         {posts.length} post{posts.length === 1 ? '' : 's'} tagged with "{tag}"
       </h1>
@@ -17,7 +26,7 @@ export default function Tags({ pathContext, data }) {
           if (post.frontmatter.draft !== 'true') {
             return (
               <Article
-                id={post.id}
+                key={post.id}
                 link={post.frontmatter.path}
                 title={post.frontmatter.title}
                 date={post.frontmatter.date}
@@ -38,6 +47,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        url
       }
     }
     allMarkdownRemark(

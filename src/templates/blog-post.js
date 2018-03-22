@@ -1,20 +1,25 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import Img from 'gatsby-image';
+import Head from './Head';
 import BackIcon from 'react-icons/lib/fa/chevron-left';
 import ForwardIcon from 'react-icons/lib/fa/chevron-right';
 import Hourglass from 'react-icons/lib/fa/hourglass-2';
-
 import Link from '../components/Link';
 import Tags from '../components/Tags';
 
 export default function Template({ data, pathContext }) {
   const { markdownRemark: post } = data;
-  const siteTitle = data.site.siteMetadata.title;
+  const siteMetadata = data.site.siteMetadata;
   const { next, prev } = pathContext;
   return (
     <div className="article expanded">
-      <Helmet title={ siteTitle + ' | ' + post.frontmatter.title} />
+      <Head
+        title={siteMetadata.title + ' | ' + post.frontmatter.title}
+        siteDescription={post.excerpt}
+        siteImage={siteMetadata.url + post.frontmatter.feature.childImageSharp.sizes.src}
+        siteTitle={siteMetadata.title}
+        url={siteMetadata.url + post.frontmatter.path}
+      />
       <div className="article__thumb expanded">
         <Img sizes={post.frontmatter.feature.childImageSharp.sizes} />
         <span className="credit"> {post.frontmatter.credit} </span>
@@ -24,7 +29,10 @@ export default function Template({ data, pathContext }) {
           {post.frontmatter.title}
           <br />
           <span className="article__date">{post.frontmatter.date}</span>
-          <span className="article__time-to-read"><Hourglass />{post.timeToRead} minutes</span>
+          <span className="article__time-to-read">
+            <Hourglass />
+            {post.timeToRead} minutes
+          </span>
         </h1>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <Tags list={post.frontmatter.tags || []} />
@@ -56,9 +64,11 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        url
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
+      excerpt(pruneLength: 120)
       html
       timeToRead
       frontmatter {

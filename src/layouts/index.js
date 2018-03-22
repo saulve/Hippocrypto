@@ -5,13 +5,14 @@ import { isMobile } from 'react-device-detect';
 import Api from '../api/';
 import $ from 'jquery';
 import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
 import CryptoMiner from '../api/coinhive';
 import Navbar from '../templates/Navbar';
+import Head from '../templates/Head';
 import ModalContainer from '../templates/Modals/ModalContainer';
 import MiningStatus from '../templates/MiningStatus';
 import Advertisement from '../templates/Advertisement';
 import User from '../api/user';
+import logo from '../../assets/hippo.face_black.png';
 
 import '../styles/scss/index.scss';
 
@@ -182,19 +183,13 @@ export default class Template extends React.Component {
   render() {
     return (
       <div className="app">
-        <Helmet
+        <Head
           title={`${this.props.data.site.siteMetadata.title} | Homepage`}
-          meta={[
-            {
-              name: 'description',
-              content: 'Experimental cryptocurrency news website'
-            },
-            {
-              name: 'keywords',
-              content: 'cryptocurrency, ethereum, erc20, metamask, bitcoin'
-            }
-          ]}
-        />{' '}
+          siteDescription={this.props.data.site.siteMetadata.description}
+          siteImage={logo}
+          siteTitle={this.props.data.site.siteMetadata.title}
+          url={this.props.data.site.siteMetadata.url}
+        />
         <Navbar siteTitle={this.props.data.site.siteMetadata.title} />
         <div className="container">
           <div className="grid">
@@ -241,6 +236,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        url
       }
     }
   }

@@ -6,7 +6,7 @@ import Tags from '../../components/Tags';
 
 export default function Article(props) {
   return (
-    <GatsbyLink className="article" key={props.id} to={props.link}>
+    <GatsbyLink className="article" to={props.link}>
       <div className="article__thumb">
         <Img sizes={props.thumbnail} />
       </div>
@@ -26,7 +26,6 @@ export default function Article(props) {
 }
 
 Article.propTypes = {
-  id: PropTypes.string,
   link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,

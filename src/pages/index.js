@@ -12,7 +12,7 @@ export default function Index({ data }) {
           if (post.frontmatter.draft !== 'true') {
             return (
               <Article
-                id={post.id}
+                key={post.id}
                 link={post.frontmatter.path}
                 title={post.frontmatter.title}
                 date={post.frontmatter.date}
