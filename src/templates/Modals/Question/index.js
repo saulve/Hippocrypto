@@ -12,6 +12,7 @@ export default function Question(props) {
   return (
     <div className="modal__quest">
       <h3>{props.question.name}</h3>
+      {props.question.subhead ? <h4>{props.question.subhead}</h4> : null}
       <MultiChoiceInput
           answers={props.question.answers}
           currentAnswer={props.currentAnswer}

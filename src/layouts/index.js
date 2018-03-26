@@ -32,7 +32,8 @@ export default class Template extends React.Component {
     const isOptSelected = this.user.info.selection ? true : false;
 
     this.state = {
-      isOptSelected: isOptSelected,
+      /* check if monetization selected and survey completed */
+      isOptSelected: isOptSelected && this.user.info.surveyResults,
       openModal: false,
       hideAds: null
     };

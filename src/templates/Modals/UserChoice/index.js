@@ -8,6 +8,7 @@ export default function UserChoice(props) {
       <h2>{GENERAL.HEADER}</h2>
       <p dangerouslySetInnerHTML={{ __html: USER_CHOICE.MESSAGE }} />
       <p className="italics" dangerouslySetInnerHTML={{ __html: USER_CHOICE.SUB_MESSAGE }}/>
+      <h5>Please select your preferred option:</h5>
       <div className="modal__footer">
         <button
           className="modal__button modal__button--ads"

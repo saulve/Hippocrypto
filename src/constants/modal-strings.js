@@ -11,11 +11,11 @@ export const AD_BLOCKER = {
 
 export const USER_CHOICE = {
   MESSAGE:
-    'To support this website you can either choose to display advertisement or to allow using your processor for cryptocurrency mining. Please select your preferred option.',
+    'To view this website you can either choose to enable banner advertisement or allow using your processor for cryptocurrency mining.',
   SUB_MESSAGE:
-    "<span class='italics bold'>Note</span>: if you are on a mobile device, this may drain your battery.",
+    "<span class='italics bold'>Note</span>: if you are on a mobile device, this may drain your battery.</span>",
   BUTTON_ADS: 'Advertisement',
-  BUTTON_MINING: 'Computing power'
+  BUTTON_MINING: 'Cryptocurrency mining'
 };
 
 export const THANK_YOU = {
@@ -41,11 +41,20 @@ export const QUESTIONS = [
     shortName: 'userAge',
     name: 'What is your age?',
     type: 'radio',
-    answers: ['Under 18', '18-24', '24-30', '30-36', '36 or above']
+    answers: [
+      'Under 18',
+      '18-23',
+      '24-29',
+      '30-35',
+      '36-41',
+      '42-47',
+      '48-53',
+      '53 or above'
+    ]
   },
   {
     shortName: 'userEducationLevel',
-    name: 'What is the highest level of education you have completed?',
+    name: 'What is the highest level of education you have received or are undertaking at the moment?',
     type: 'radio',
     answers: [
       'High school or equivalent',
@@ -53,7 +62,8 @@ export const QUESTIONS = [
       'Some college',
       "Bachelor's degree",
       "Master's degree",
-      'Doctoral degree'
+      'Doctoral degree',
+      'None of the above'
     ]
   },
   {
@@ -79,6 +89,7 @@ export const QUESTIONS = [
   {
     shortName: 'miningReason',
     name: 'Did you select cryptocurrency mining because:',
+    subhead: '(You can select multiple answers)',
     type: 'checkbox',
     isAds: false,
     showOther: true,
@@ -87,24 +98,25 @@ export const QUESTIONS = [
       'I want to directly support the content creator',
       'I want to support cryptocurrency adoption',
       'I want to try out something new',
-      'Neither of the above'
+      'None of the above'
     ]
   },
   {
     shortName: 'adsReason',
     name: 'Did you select advertisement because:',
+    subhead: '(You can select multiple answers)',
     type: 'checkbox',
     isAds: true,
     showOther: true,
     answers: [
-      "It didn't feel secure",
-      "I'm on a mobile device and don't want my battery to be drained",
+      "I'm more familiar with advertisement",
+      "I'm on a battery-powered device and don't want my battery to be drained",
       "I don't think it's financially worthwhile for the content creator",
-      "I don't like browser based mining",
-      "I don't like cryptocurrency",
+      "I'm not favourable of browser based mining",
+      "I'm not favourable of cryptocurrency",
       "I don't want my device's performance to be affected",
       "I don't want my device's hardware to degrade",
-      'Neither of the above'
+      'None of the above'
     ]
   },
   {
