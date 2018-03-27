@@ -11,7 +11,7 @@ export const AD_BLOCKER = {
 
 export const USER_CHOICE = {
   MESSAGE:
-    'To view this website you can either choose to enable banner advertisement or allow using your processor for cryptocurrency mining.',
+    "To view this website you can either choose to enable banner advertisement or allow using your device's processor for cryptocurrency mining.",
   SUB_MESSAGE:
     "<span class='italics bold'>Note</span>: if you are on a mobile device, this may drain your battery.</span>",
   BUTTON_ADS: 'Advertisement',
@@ -21,7 +21,13 @@ export const USER_CHOICE = {
 export const THANK_YOU = {
   HEADER: 'Thank you!',
   MESSAGE: "Your time is greatly appreciated. This was a one-time survey and you won't be prompted again. Have a nice day!",
-  SUB_MESSAGE: "You can adjust the miner's power at any point as shown in the image"
+  SUB_MESSAGE: "You can adjust the miner's power at any point as shown in the video bellow."
+};
+
+export const INFORMED_CONSENT = {
+  HEADER: 'Informed Consent',
+  MESSAGE: "You are being invited to participate in a research study. The purpose of this study is to evaluate the consent to browser-based cryptocurrency mining, and will take you approximately <b>2</b> minutes to complete. The data gathered as part of this research is anonymous and may include information about your device and location.",
+  SUB_MESSAGE: "If you agree to participate please click 'Begin' to start the survey."
 };
 
 export const QUESTIONS = [
@@ -43,21 +49,22 @@ export const QUESTIONS = [
     type: 'radio',
     answers: [
       'Under 18',
-      '18-23',
-      '24-29',
-      '30-35',
-      '36-41',
-      '42-47',
-      '48-53',
-      '53 or above'
+      '18-24',
+      '25-29',
+      '30-34',
+      '35-39',
+      '40-44',
+      '45-49',
+      '50 or above'
     ]
   },
   {
     shortName: 'userEducationLevel',
     name: 'What is the highest level of education you have received or are undertaking at the moment?',
+    subhead: '(If the level you received is unspecified please select the closest equivalent)',
     type: 'radio',
     answers: [
-      'High school or equivalent',
+      'High school',
       'Vocational/technical school',
       'Some college',
       "Bachelor's degree",

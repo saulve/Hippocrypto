@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Question from '../Question';
+import InformedConsent from '../InformedConsent';
 import { QUESTIONS } from '../../../constants/modal-strings.js';
 
 export default class Questionaire extends React.Component {
@@ -13,11 +14,13 @@ export default class Questionaire extends React.Component {
       questionNum: 1,
       last: false,
       currentAnswer: [],
-      showOther: false
+      showOther: false,
+      consent: false
     };
     this.answers = {};
     this.handleQuestionAnswered = this.handleQuestionAnswered.bind(this);
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+    this.onConsent = this.onConsent.bind(this);
   }
 
   handleAnswerSelected(val) {
@@ -70,6 +73,12 @@ export default class Questionaire extends React.Component {
     }
   }
 
+  onConsent() {
+    this.setState({
+      consent: true
+    });
+  }
+
   findNextQuestion(counter) {
     for (let i = counter + 1; i < QUESTIONS.length; ++i) {
       if (
@@ -82,7 +91,7 @@ export default class Questionaire extends React.Component {
     return null;
   }
 
-  render() {
+  renderQuestion() {
     return (
       <Question
         question={this.state.question}
@@ -93,6 +102,16 @@ export default class Questionaire extends React.Component {
         last={this.state.last}
       />
     );
+  }
+
+  render() {
+    const el = this.state.consent ? (
+      this.renderQuestion()
+    ) : (
+      <InformedConsent onConsent={this.onConsent} />
+    );
+
+    return el;
   }
 }
 
