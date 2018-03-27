@@ -4,7 +4,7 @@ export const GENERAL = {
 
 export const AD_BLOCKER = {
   MESSAGE:
-    "I've noticed that you're using <strong>AdBlocker</strong>, which is a great extension. However, proceed with this experiment, I have to ask you to disable it for pages on this domain. You can do that by clicking on the AdBlocker icon and selecting: <br /> <span class='italics'>\"Don't run on pages on this domain\"</span>.",
+    "I've noticed that you're using <strong>AdBlocker</strong>, which is a great extension. However, to proceed with this experiment, I have to ask you to disable it for pages on this domain. You can do that by clicking on the AdBlocker icon and selecting: <br /> <span class='italics'>\"Don't run on pages on this domain\"</span>.",
   BUTTON: 'Click here once AdBlocker is disabled',
   SUB_MESSAGE: 'Sincerely thank you!'
 };
