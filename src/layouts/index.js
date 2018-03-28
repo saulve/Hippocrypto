@@ -55,7 +55,7 @@ export default class Template extends React.Component {
 
     /* set modal state here to avoid flickering */
     this.setState({
-      openModal: !this.state.isOptSelected, // show modal only if monetization is not set
+      openModal: !this.state.isOptSelected // show modal only if monetization is not set
     });
 
     /* Show ads/start miner if monetization already selected */
@@ -78,15 +78,16 @@ export default class Template extends React.Component {
       /* only send data if all data has been gathered */
       if (user.selection && user.surveyResults) {
         try {
-          user.endTime = new Date(); // end session
-          /* get session time in seconds */
-          user.sessionLength =
-            (user.endTime.getTime() - user.startTime.getTime()) / 1000;
           user.numOfHashes = miner.getTotalHashes();
-          user.device = isMobile ? 'Mobile' : 'Laptop or PC';
         } catch (e) {
           let err = e;
+          user.numOfHashes = 0;
         }
+        user.endTime = new Date(); // end session
+        /* get session time in seconds */
+        user.sessionLength =
+          (user.endTime.getTime() - user.startTime.getTime()) / 1000;
+        user.device = isMobile ? 'Mobile' : 'Laptop or PC';
         Api.sendAnalytics(user);
       }
     });
