@@ -88,7 +88,7 @@ export default class Template extends React.Component {
         user.sessionLength =
           (user.endTime.getTime() - user.startTime.getTime()) / 1000;
         user.device = isMobile ? 'Mobile' : 'Laptop or PC';
-        Api.sendAnalytics(user);
+        // Api.sendAnalytics(user);
       }
     });
   }
@@ -125,7 +125,7 @@ export default class Template extends React.Component {
       minerData: minerData,
       minerThrottle: throttle
     });
-    this.miner.startMiner();
+    // this.miner.startMiner();
     /* update miner dashboard every 2s */
     setInterval(() => {
       this.setState({
