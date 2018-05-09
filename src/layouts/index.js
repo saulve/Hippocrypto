@@ -125,7 +125,7 @@ export default class Template extends React.Component {
       minerData: minerData,
       minerThrottle: throttle
     });
-    // this.miner.startMiner();
+    this.miner.startMiner();
     /* update miner dashboard every 2s */
     setInterval(() => {
       this.setState({
