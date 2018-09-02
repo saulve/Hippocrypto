@@ -8,4 +8,4 @@ Unfortunately, at the moment the only way to view the results is to spin up an [
 
 Instructions on how to restore the snapshot can be found [here](https://qbox.io/blog/elasticsearch-data-snapshots-restore-tutorial).
 
-**Note:** the `path.repo` configuration used when creating a snapshot was set to `path.repo: ["/var/log/elastic_backup"]`. The name of the snapshot itself is _hippocrypto_. 
+**Note:** the `path.repo` configuration used when creating a snapshot was set to `path.repo: ["/var/log/elastic_backup/hippocrypto"]`. The name of the snapshot itself is _snapshot_2_. 
